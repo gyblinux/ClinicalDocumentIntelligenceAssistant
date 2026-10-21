@@ -17,6 +17,14 @@ All notable project changes are recorded here.
 - Add local TEI/Qdrant indexing and evidence retrieval with deterministic point
   IDs, index manifests, and citation-ready search results.
 - Add a reproducible manual acceptance guide for Docker-backed retrieval.
+- Add the `clinical-doc-answer` stage for single-turn evidence-grounded answers,
+  claim-level citation validation, allowlisted trial metadata, safe abstention,
+  persisted answer records for feature 006 evaluation, and a passing live
+  Docker-off acceptance.
+- Define a refined single-turn evidence-answering scope, approved plan, and task
+  list; preserve the preliminary evaluation scope; and record an ignored
+  requirements-gap baseline for final comparison. Define the paired
+  retrieval/answer artifact handoff from feature 005 to feature 006.
 - Define persisted discovery artifacts, empty-input handling, multi-run
   deduplication for feature 003, and baseline retrieval scope for feature 004.
 

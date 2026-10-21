@@ -1,6 +1,6 @@
 # Architecture Review: Public Clinical Research Q&A
 
-**Status**: Reviewed for fit; not an approved implementation plan
+**Status**: Reviewed for fit; delivered through approved feature slices
 
 **Specification**: [spec.md](spec.md)
 
@@ -9,6 +9,10 @@
 **Next feature**: [Evidence Corpus Assembly and Chunking](../003-evidence-corpus-chunking/spec.md)
 
 **Follow-on feature**: [Evidence Embedding and Vector Retrieval](../004-evidence-vector-retrieval/spec.md)
+
+**Answer feature**: [Evidence-Grounded Answers](../005-evidence-grounded-answers/spec.md)
+
+**Evaluation feature**: [Reproducible RAG Evaluation](../006-rag-evaluation/spec.md)
 
 ## Verdict
 
@@ -26,13 +30,21 @@ attribution before the project has measured a concrete need.
 
 The first feature slice is narrower than full ingestion: one agent discovers
 candidates from ClinicalTrials.gov, uses the current-time capability, and returns
-screened records. PDF parsing, retrieval, question answering, and evaluation are
-later stages.
+screened records. PDF parsing remains deferred, while retrieval, question
+answering, and evaluation are separate downstream stages.
 
-Feature 003 now defines the next bounded slice: convert accepted records into
-normalized evidence documents and deterministic chunks. Feature 004 is intentionally
-limited to indexing and retrieval basics until feature 003 is reviewed and
-implemented.
+Feature 003 converts accepted records into normalized evidence documents and
+deterministic chunks. Feature 004 indexes those chunks and returns ranked evidence
+with source provenance.
+
+Feature 005 now provides the implemented single-turn answering stage. Feature 006
+remains specification-only and covers reproducible retrieval/answer evaluation.
+Neither adds multi-agent behavior; feature 006 still requires its own approved
+plan and tasks.
+
+Feature 006 evaluates each case from a fixed case definition plus the paired
+feature 004 retrieval artifact and feature 005 answer record. Keeping both inputs
+preserves attribution between retrieval failures and answer-generation failures.
 
 ## Stage Assessment
 
@@ -91,7 +103,6 @@ It should not replace fixed test cases, citation checks, or human spot checks.
 
 ## Decision Gate
 
-This review recommends the architecture with the deferred items above. It does
-not approve a plan, create tasks, or authorize implementation. The next SDD stage
-begins only after the user explicitly approves the architecture direction for
-`$speckit-plan`.
+This review endorses the architecture with the deferred items above. The project
+has implemented features 002 through 004 as bounded slices. Each later feature
+still requires its own approved plan, task breakdown, and implementation gate.

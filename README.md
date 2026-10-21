@@ -6,21 +6,19 @@ Clinical Doc Assist is a small, early-stage practice project for:
 2. Answering questions from retrieved evidence.
 3. Evaluating answer quality with a reproducible test set.
 
-This is a learning project, not a clinical-use system. Architecture and
-implementation decisions are intentionally deferred.
+This is a learning project, not a clinical-use system. The pipeline is delivered
+in small, independently reviewable stages.
 
 ## Current State
 
-The repository has a Spec Kit baseline and a provisional code scaffold. The
-specification defines the project scope only; the existing source code is not an
-approved architecture.
+Features 002 through 004 are implemented: public trial discovery, deterministic
+corpus chunking, and local vector retrieval with citation-ready provenance.
 
-A high-level single-agent pipeline has been proposed and reviewed in the
+The high-level single-agent pipeline is reviewed in the
 [architecture review](specs/001-clinical-documentation-agent/architecture-review.md).
-Multi-agent orchestration and operational infrastructure are deferred. This is
-not yet an approved plan.
+Multi-agent orchestration and production monitoring remain deferred.
 
-The first feature is
+Feature 002 handles
 [research document discovery and screening](specs/002-research-doc-discovery/spec.md).
 It stops after returning accepted, rejected, and needs-review candidates.
 
@@ -99,6 +97,38 @@ keeps PyTorch and Transformers inside its Docker container.
 
 See [retrieval acceptance](docs/retrieval-acceptance.md) for the manual Docker
 startup, integration test, indexing, search, and idempotency checks.
+
+### Answer prototype
+
+Generate one answer from a saved retrieval run:
+
+```powershell
+./.venv/Scripts/python.exe -m clinical_doc_assist.answering.cli `
+  --retrieval-run artifacts/retrieval/semaglutide-cardio.json `
+  --output artifacts/answers/semaglutide-cardio-answer.json
+```
+
+The command validates the retrieval artifact, sends only its recorded question and
+evidence to DeepSeek Flash, validates claim-level citations, and persists one JSON
+answer record. It supports explicit `insufficient_evidence` and `failed`
+outcomes. Docker-backed retrieval services are not required when consuming an
+existing artifact.
+
+The persisted answer record preserves retrieval and answer identifiers, evidence,
+citations, tool calls, usage, latency, and errors for feature 006 evaluation.
+Manual acceptance passed with the retrieval containers stopped.
+After reinstalling the editable package, the equivalent entry point is
+`clinical-doc-answer`.
+
+### Evaluation scope
+
+Feature 006 remains preliminary:
+
+- [Reproducible RAG evaluation](specs/006-rag-evaluation/spec.md)
+
+Feature 006 will consume each evaluation case with its paired feature 004
+retrieval artifact and feature 005 answer record, keeping retrieval and answer
+metrics attributable to separate stages.
 
 ## Spec-Driven Development
 
