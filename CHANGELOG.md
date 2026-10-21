@@ -49,6 +49,10 @@ All notable project changes are recorded here.
 
 - Improve corpus chunk boundaries, transient source retries, structured source
   failures, and concise filesystem error handling.
+- Consolidate project documentation into a maintained architecture brief,
+  task-oriented usage guide, beginner-to-intermediate technology guide, docs index,
+  recruiter-facing project summary, and automated local-link validation.
+- Remove the obsolete local requirements-gap baseline and its ignore rule.
 - Strengthen feature 007 artifact validation, metadata-citation checks, Windows
   UTF-8 BOM loading, and comparison diagnostics; consolidate JSON persistence and
   restore module-level `present` command dispatch.

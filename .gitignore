@@ -18,9 +18,6 @@ build/
 dist/
 /artifacts/
 
-# Local requirements-gap baselines for review and final comparison
-review-gaps/
-
 # Editors and operating systems
 .idea/
 .vscode/

@@ -76,6 +76,6 @@ independent human review.
 ## Limitations
 
 - Key-point coverage is a normalized text-match proxy, not semantic verification.
-- Human readability review remains a manual reviewer step.
+- Independent human readability review remains outstanding.
 - The baseline uses one public ClinicalTrials.gov corpus and one answer model.
 - This report is a development baseline, not a clinical validation.

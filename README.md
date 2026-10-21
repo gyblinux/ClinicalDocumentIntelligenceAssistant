@@ -1,187 +1,234 @@
 # Clinical Doc Assist
 
-Clinical Doc Assist is a small, early-stage practice project for:
+Clinical Doc Assist is a small, evidence-grounded RAG practice project. It
+discovers public ClinicalTrials.gov records, builds a searchable evidence corpus,
+answers questions with validated citations, evaluates quality against a fixed
+20-case set, and renders deterministic plain-text answer views.
 
-1. Ingesting publicly available clinical research documents.
-2. Answering questions from retrieved evidence.
-3. Evaluating answer quality with a reproducible test set.
+It is not a clinical decision-support system. Do not use it for diagnosis,
+treatment, or patient-specific medical decisions.
 
-This is a learning project, not a clinical-use system. The pipeline is delivered
-in small, independently reviewable stages.
+## What it does
 
-## Current State
-
-Features 002 through 004 are implemented: public trial discovery, deterministic
-corpus chunking, and local vector retrieval with citation-ready provenance.
-
-The high-level single-agent pipeline is reviewed in the
-[architecture review](specs/001-clinical-documentation-agent/architecture-review.md).
-Multi-agent orchestration and production monitoring remain deferred.
-
-Feature 002 handles
-[research document discovery and screening](specs/002-research-doc-discovery/spec.md).
-It stops after returning accepted, rejected, and needs-review candidates.
-
-### Discovery prototype
-
-Set `DEEPSEEK_API_KEY`, then run:
-
-```powershell
-clinical-doc-discover "GLP-1 cardiovascular outcomes" `
-  --updated-after 2023-01-01 `
-  --updated-before 2026-10-21 `
-  --limit 20 `
-  --output artifacts/discovery/glp1-cardio.json
+```text
+public trial discovery
+  -> normalized documents and deterministic chunks
+  -> local embeddings and Qdrant vector search
+  -> evidence-grounded cited answer
+  -> linked retrieval/answer pipeline
+  -> fixed-case evaluation
+  -> readable answer presentation
 ```
 
-The command prints one JSON discovery run. It uses ClinicalTrials.gov as its only
-source, records UTC time before searching, and stops before downloading or
-ingesting documents. The automated tests use fake model and HTTP responses.
+Implemented capabilities:
 
-If Windows application-control policy blocks the generated executable, use:
+- ClinicalTrials.gov discovery with current-time context and deterministic source
+  screening.
+- Corpus assembly with preserved NCT IDs, sections, URLs, and content hashes.
+- Local TEI embeddings and Qdrant retrieval.
+- DeepSeek Flash answers constrained to retrieved evidence.
+- Claim-level citation validation, metadata-tool allowlisting, and abstention.
+- One-question end-to-end orchestration with linked artifacts.
+- Fixed 20-case evaluation, failure attribution, one-variable comparison, and
+  versioned verdicts.
+- Plain-text presentation with all claims, deduplicated sources, and no per-answer
+  trust percentage.
 
-```powershell
-python -m clinical_doc_assist.research.cli "GLP-1 cardiovascular outcomes" `
-  --updated-after 2023-01-01 `
-  --updated-before 2026-10-21 `
-  --limit 20 `
-  --output artifacts/discovery/glp1-cardio.json
+## Engineering highlights
+
+- Explicit stage boundaries with versioned JSON/JSONL artifacts.
+- One bounded answering agent instead of unnecessary multi-agent orchestration.
+- Local TEI and Qdrant services that keep heavyweight embedding dependencies out of
+  the host Python process.
+- Deterministic citation validation, abstention, indexing IDs, and presentation.
+- A reproducible 20-case evaluation suite with separate retrieval and answer
+  metrics.
+- Offline-first testing with optional real Docker integration tests.
+- GitHub Spec Kit specifications, plans, tasks, and requirement checklists for
+  every implemented feature.
+
+## Baseline results
+
+The first generated evaluation run completed all 20 cases with zero
+evaluation-infrastructure errors:
+
+| Metric | Result |
+| --- | ---: |
+| Retrieval hit@k | 0.444 |
+| Retrieval MRR | 0.244 |
+| Citation validity | 1.000 |
+| Citation coverage | 0.611 |
+| Refusal correctness | 0.650 |
+| Forbidden-statement violations | 0.000 |
+
+The baseline identifies retrieval coverage as the primary weakness rather than
+invalid citations. These figures are development measurements, not evidence of
+clinical reliability. See the [full evaluation report](docs/evaluation-baseline.md).
+
+## Documentation
+
+| Document | Purpose |
+| --- | --- |
+| [Documentation index](docs/README.md) | Reading order for all project documentation |
+| [Architecture brief](docs/architecture.md) | Current system design, stage boundaries, data flow, artifacts, and limitations |
+| [Usage guide](docs/usage.md) | Setup, configuration, commands, evaluation, presentation, tests, and troubleshooting |
+| [Technology guide](docs/technology-guide.md) | Beginner-to-intermediate explanations of the stack and RAG concepts |
+| [Evaluation baseline](docs/evaluation-baseline.md) | Initial metrics, failure analysis, and known limitations |
+| [Changelog](CHANGELOG.md) | User-visible and operationally important changes |
+
+## Requirements
+
+- Python 3.11+
+- Git Bash on Windows
+- Docker Desktop with Linux containers
+- DeepSeek API key
+- Internet access for ClinicalTrials.gov and DeepSeek
+
+## Quick start
+
+Install from Git Bash:
+
+```bash
+cd /path/to/clinical_doc_assist
+
+python -m venv .venv
+source .venv/Scripts/activate
+python -m pip install --upgrade pip
+python -m pip install -e ".[dev]"
+cp .env.example .env
 ```
 
-### Corpus prototype
+Set `DEEPSEEK_API_KEY` in `.env`, then start local retrieval services:
 
-Build normalized evidence documents and chunks from one or more discovery
-artifacts:
-
-```powershell
-python -m clinical_doc_assist.corpus.cli build `
-  --discovery-run artifacts/discovery/semaglutide-obesity.json `
-  --discovery-run artifacts/discovery/tirzepatide-obesity.json `
-  --discovery-run artifacts/discovery/glp1-mace.json `
-  --output artifacts/corpus/glp1-pilot
-```
-
-The output directory contains `manifest.json`, `documents.jsonl`, and
-`chunks.jsonl`. A `partial` status means some detailed ClinicalTrials.gov records
-failed; successful documents and failures remain inspectable in the manifest.
-The stage performs no LLM calls and stops before embeddings or retrieval.
-
-### Retrieval prototype
-
-Start the local TEI and Qdrant services:
-
-```powershell
+```bash
 docker compose up -d
+docker compose ps
 ```
 
-Index the current corpus:
+## Run one question
 
-```powershell
-clinical-doc-retrieve index `
-  --corpus artifacts/corpus/glp1-pilot-v2 `
-  --collection clinical_evidence_v1
-```
+The shortest end-to-end example assumes the GLP-1 corpus is already indexed:
 
-Retrieve evidence chunks:
-
-```powershell
-clinical-doc-retrieve search `
-  "What cardiovascular outcomes were reported for semaglutide?" `
-  --collection clinical_evidence_v1 `
+```bash
+clinical-doc-ask \
+  "What did NCT07424430 aim to evaluate?" \
+  --collection clinical_evidence_v1 \
   --limit 5
 ```
 
-The search returns ranked evidence chunks with source provenance. It does not
-generate an answer. The Python environment requires only `qdrant-client`; TEI
-keeps PyTorch and Transformers inside its Docker container.
+This writes linked retrieval, answer, and pipeline artifacts under `artifacts/`.
+If the collection has no adequate evidence, the result is
+`insufficient_evidence`.
 
-See [retrieval acceptance](docs/retrieval-acceptance.md) for the manual Docker
-startup, integration test, indexing, search, and idempotency checks.
+## Build the evidence collection
 
-### Answer prototype
+Run the stages independently when you need to inspect or debug the corpus:
 
-Generate one answer from a saved retrieval run:
+```bash
+clinical-doc-discover \
+  "GLP-1 cardiovascular outcomes" \
+  --updated-after 2023-01-01 \
+  --updated-before 2026-10-21 \
+  --limit 20 \
+  --output artifacts/discovery/glp1-cardio.json
 
-```powershell
-./.venv/Scripts/python.exe -m clinical_doc_assist.answering.cli `
-  --retrieval-run artifacts/retrieval/semaglutide-cardio.json `
-  --output artifacts/answers/semaglutide-cardio-answer.json
+clinical-doc-corpus build \
+  --discovery-run artifacts/discovery/glp1-cardio.json \
+  --output artifacts/corpus/glp1-pilot
+
+clinical-doc-retrieve index \
+  --corpus artifacts/corpus/glp1-pilot \
+  --collection clinical_evidence_v1 \
+  --replace
 ```
 
-The command validates the retrieval artifact, sends only its recorded question and
-evidence to DeepSeek Flash, validates claim-level citations, and persists one JSON
-answer record. It supports explicit `insufficient_evidence` and `failed`
-outcomes. Docker-backed retrieval services are not required when consuming an
-existing artifact.
+Search the collection directly:
 
-The persisted answer record preserves retrieval and answer identifiers, evidence,
-citations, tool calls, usage, latency, and errors for orchestration and later
-evaluation.
-Manual acceptance passed with the retrieval containers stopped.
-After reinstalling the editable package, the equivalent entry point is
-`clinical-doc-answer`.
-
-### Orchestration prototype
-
-Run one complete question-to-answer workflow:
-
-```powershell
-./.venv/Scripts/python.exe -m clinical_doc_assist.orchestration.cli `
-  "What did NCT07424430 aim to evaluate?" `
-  --collection clinical_evidence_v1 `
-  --limit 5
+```bash
+clinical-doc-retrieve search \
+  "What cardiovascular outcomes were reported for semaglutide?" \
+  --collection clinical_evidence_v1 \
+  --limit 5 \
+  --output artifacts/retrieval/semaglutide-cardio.json
 ```
 
-Docker-backed TEI and Qdrant must be running. The command performs fresh
-retrieval for the submitted question, invokes the answering stage, and writes
-linked records under `artifacts/retrieval/`, `artifacts/answers/`, and
-`artifacts/pipelines/`.
+## Evaluate and present
 
-After reinstalling the editable package, the equivalent entry point is
-`clinical-doc-ask`.
+Evaluate the current pipeline against the checked-in 20-case suite:
 
-### Evaluation scope
+```bash
+clinical-doc-eval run \
+  --cases evaluation/cases/glp1-eval-v1.json \
+  --collection clinical_evidence_v1 \
+  --limit 5 \
+  --output-dir artifacts/evaluations
+```
 
-Feature 007 is implemented:
+Render a saved pipeline:
 
-- [Reproducible RAG evaluation](specs/007-rag-evaluation/spec.md)
+```bash
+clinical-doc-present \
+  --pipeline artifacts/pipelines/pipeline-001.json \
+  --case-id glp1-001 \
+  --evaluation artifacts/evaluations/evaluation-verdicts.json
+```
 
-Feature 007 evaluates linked feature 006 pipeline records while keeping retrieval
-and answer metrics attributable to separate stages. Evaluation is offline and
-read-only; it cannot retract an answer already returned to a user. It also renders
-a deterministic, human-readable answer view with source references and versioned
-quality checks, without presenting a misleading per-answer trust percentage.
+See the [usage guide](docs/usage.md) for saved evaluation, comparison, review, and
+full command options.
 
-### Evaluation and presentation prototype
+## Test
 
-Feature 007 now provides:
+```bash
+python -m pytest -o addopts= -q
+python -m ruff check .
+```
 
-- `clinical-doc-eval run` for saved or generated feature 006 pipeline records
-- `clinical-doc-eval compare` for one-variable comparisons
-- `clinical-doc-eval review` for persisted human readability reviews
-- `clinical-doc-present` for deterministic plain-text answer views
+Run Docker integration tests when TEI and Qdrant are active:
 
-The versioned pilot case set is
-[glp1-eval-v1.json](evaluation/cases/glp1-eval-v1.json). The initial live baseline
-and its observed limitations are documented in
-[evaluation-baseline.md](docs/evaluation-baseline.md).
+```bash
+RUN_DOCKER_INTEGRATION=1 python -m pytest -o addopts= -q tests/integration
+```
 
-After reinstalling the editable package, the console commands are available.
-During the current checkout they can be run through
-`python -m clinical_doc_assist.evaluation.cli`.
+## Repository map
 
-## Spec-Driven Development
+```text
+src/clinical_doc_assist/
+  research/       public discovery and screening
+  corpus/         normalization and deterministic chunking
+  retrieval/      TEI embeddings and Qdrant search
+  answering/      grounded agent and citation validation
+  orchestration/  linked question-to-answer pipeline
+  evaluation/     metrics, verdicts, comparison, and presentation
 
-The project advances through explicit, reviewable gates:
+specs/            approved feature specifications, plans, and tasks
+tests/            offline unit/contract tests and env-gated Docker integration tests
+evaluation/       fixed evaluation case set
+docs/             maintained architecture, usage, technology, and acceptance docs
+artifacts/        ignored local stage outputs
+```
 
-1. Review the [constitution](.specify/memory/constitution.md) and
-   [baseline specification](specs/001-clinical-documentation-agent/spec.md).
-2. Provide and approve the architecture and implementation direction.
-3. Run `$speckit-plan`, then review the plan.
-4. Run `$speckit-tasks`, then review the tasks.
-5. Run `$speckit-implement` only after approval.
+## Current limitations
 
-Ingestion, question answering, and evaluation must remain independently
-controllable and inspectable at every stage.
+- The current source implementation uses ClinicalTrials.gov records rather than
+  arbitrary PDF/protocol ingestion.
+- Retrieval coverage on the first 20-case baseline is limited; see the
+  [baseline report](docs/evaluation-baseline.md).
+- Key-point matching is a deterministic text proxy, not semantic proof.
+- Readability review was AI-assisted rather than independently human-reviewed.
+- Multi-source and conflicting-evidence presentation cases are not yet covered.
+- No API, CI pipeline, dashboard, reranker, OCR, or production monitoring exists.
 
-See [CHANGELOG.md](CHANGELOG.md) for notable changes.
+## Spec-driven development
+
+Project behavior is governed by
+[`.specify/memory/constitution.md`](.specify/memory/constitution.md):
+
+1. Review and update the relevant specification.
+2. Obtain approval for the specification.
+3. Generate and approve the plan.
+4. Generate and approve tasks.
+5. Implement only after approval.
+6. Keep tests, artifacts, and changelog entries traceable.
+
+Ingestion, question answering, and evaluation remain separately controllable by
+design.

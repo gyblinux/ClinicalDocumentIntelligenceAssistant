@@ -1,6 +1,9 @@
-# Architecture Review: Public Clinical Research Q&A
+# Architecture Decision Record: Public Clinical Research Q&A
 
-**Status**: Reviewed for fit; delivered through approved feature slices
+**Status**: Historical design rationale; implementation delivered through feature
+007
+
+**Current architecture**: [Architecture brief](../../docs/architecture.md)
 
 **Specification**: [spec.md](spec.md)
 
@@ -39,10 +42,9 @@ Feature 003 converts accepted records into normalized evidence documents and
 deterministic chunks. Feature 004 indexes those chunks and returns ranked evidence
 with source provenance.
 
-Feature 005 provides the implemented single-turn answering stage. Feature 006 now
+Feature 005 provides the implemented single-turn answering stage. Feature 006
 provides the implemented question-to-answer composition layer, and feature 007
-will evaluate the resulting pipeline records. None adds multi-agent behavior;
-feature 007 still requires its own approved plan and tasks.
+evaluates the resulting pipeline records. None adds multi-agent behavior.
 
 Feature 006 accepts each user question, performs fresh retrieval, invokes
 answering, and links the resulting artifacts. Feature 007 evaluates each fixed case
@@ -109,5 +111,7 @@ It should not replace fixed test cases, citation checks, or human spot checks.
 ## Decision Gate
 
 This review endorses the architecture with the deferred items above. The project
-has implemented features 002 through 004 as bounded slices. Each later feature
-still requires its own approved plan, task breakdown, and implementation gate.
+has delivered features 002 through 007 as bounded slices. The current system
+description is maintained in the
+[architecture brief](../../docs/architecture.md); this document preserves the
+original scope and tradeoff decisions.

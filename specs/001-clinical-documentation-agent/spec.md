@@ -4,7 +4,7 @@
 
 **Created**: 2026-10-21
 
-**Status**: Draft - scope stable; architecture review pending approval
+**Status**: Delivered baseline; implemented through feature 007
 
 **Input**: A small practice project that ingests publicly available clinical
 research documents, answers questions using retrieved evidence, and evaluates
@@ -128,6 +128,5 @@ verify that both runs produce comparable per-case and aggregate results.
 - This is a small practice project, not a production or clinical-use system.
 - Publicly available clinical research documents are the only input data.
 - The corpus and test set remain small enough for a single user to inspect.
-- A high-level architecture has been proposed and reviewed separately. Concrete
-  sources, formats, retrieval details, quality metric, model, storage, interface,
-  and implementation plan remain pending user approval.
+- The delivered architecture, artifacts, commands, and limitations are maintained
+  in [the architecture brief](../../docs/architecture.md).

@@ -30,7 +30,7 @@ QDRANT_API_KEY=
 From Git Bash:
 
 ```bash
-cd /c/Users/gybsa/repos/clinical_doc_assist
+cd /path/to/clinical_doc_assist
 docker compose pull
 docker compose up -d
 docker compose ps
