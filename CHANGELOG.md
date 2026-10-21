@@ -19,12 +19,15 @@ All notable project changes are recorded here.
 - Add a reproducible manual acceptance guide for Docker-backed retrieval.
 - Add the `clinical-doc-answer` stage for single-turn evidence-grounded answers,
   claim-level citation validation, allowlisted trial metadata, safe abstention,
-  persisted answer records for feature 006 evaluation, and a passing live
+  persisted answer records for later orchestration/evaluation, and a passing live
   Docker-off acceptance.
 - Define a refined single-turn evidence-answering scope, approved plan, and task
   list; preserve the preliminary evaluation scope; and record an ignored
   requirements-gap baseline for final comparison. Define the paired
-  retrieval/answer artifact handoff from feature 005 to feature 006.
+  retrieval/answer artifact handoff to evaluation.
+- Define feature 006 as the user-facing question-to-answer orchestration layer and
+  move reproducible RAG evaluation to feature 007 so evaluation follows the
+  composed pipeline.
 - Define persisted discovery artifacts, empty-input handling, multi-run
   deduplication for feature 003, and baseline retrieval scope for feature 004.
 

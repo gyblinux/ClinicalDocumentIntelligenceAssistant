@@ -64,7 +64,8 @@ A supported answer should have:
 - The research-only disclaimer
 
 Verify that every value in `claims[].citation_ids` appears in `citations[]`.
-The same record preserves the retrieval ID and answer ID required by feature 006.
+The same record preserves the retrieval ID and answer ID used by feature 006
+orchestration and feature 007 evaluation.
 
 ## 4. Verify Abstention
 

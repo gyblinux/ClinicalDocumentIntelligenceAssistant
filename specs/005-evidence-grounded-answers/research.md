@@ -81,7 +81,7 @@ inspectable stage instead of a general agent framework.
 ## R-007: Validate Citation Identity, Not Semantic Entailment
 
 - **Decision**: Application code validates citation identifiers and canonical
-  provenance. Semantic faithfulness is measured by feature 006.
+  provenance. Semantic faithfulness is measured by feature 007.
 - **Rationale**: Deterministic code can prove that a citation exists and points to
   supplied evidence. It cannot prove that the sentence is supported without a
   separate judge or human rubric.

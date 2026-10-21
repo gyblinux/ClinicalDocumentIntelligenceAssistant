@@ -189,7 +189,7 @@ traceable and restricted to evidence NCT IDs.
 
 **Goal**: Persist a self-contained answer record for every answered, abstained, or
 failed run, including model, evidence, citation, tool, usage, timing, and error
-provenance, so feature 006 can consume it with the corresponding feature 004
+provenance, so feature 006 can compose it with the corresponding feature 004
 retrieval artifact and evaluation case.
 
 **Independent Test**: Produce and persist one answer record of each status, then
@@ -213,7 +213,7 @@ output-path behavior, and reviewer reconstruction of the run.
 - [X] T028 [US4] Complete self-contained `answered`, `insufficient_evidence`, and
   `failed` artifact serialization with token usage when available, latency,
   errors, evidence snapshots, research-only disclaimer, and the retrieval/answer
-  identifiers required by feature 006 in
+  identifiers required by feature 006 orchestration and feature 007 evaluation in
   `src/clinical_doc_assist/answering/service.py`.
 - [X] T029 [US4] Complete default output-path selection, explicit-path
   no-overwrite enforcement, failed-artifact handling, stdout/file equality, and
@@ -229,7 +229,7 @@ reconstructing the retrieval environment.
 - [X] T030 [P] Update `README.md` and
   `specs/005-evidence-grounded-answers/quickstart.md` with the implemented
   command, Docker-off stage boundary, answer-record inspection behavior, and
-  feature 006 handoff.
+  feature 006/007 handoff.
 - [X] T031 [P] Add the implemented answering workflow to `CHANGELOG.md` under the
   appropriate change category.
 - [X] T032 Run the manual Docker-off acceptance in

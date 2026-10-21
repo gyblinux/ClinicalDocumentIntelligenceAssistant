@@ -9,7 +9,7 @@
 - [x] No implementation details leak into the specification
 - [x] Focused on fixed, reproducible RAG measurement
 - [x] Separates retrieval and answer quality
-- [x] Defines paired retrieval and answer-record inputs
+- [x] Defines pipeline-record inputs linked to retrieval and answer artifacts
 - [x] Written for a non-specialist project reviewer
 - [x] All mandatory specification sections are complete
 
@@ -30,11 +30,11 @@
 - [x] All functional requirements have clear acceptance coverage
 - [x] User stories cover baseline and comparison flows
 - [x] The feature meets the measurable outcomes in the success criteria
-- [x] Evaluation implementation depends on features 004 and 005
+- [x] Evaluation implementation depends on features 004, 005, and 006
 - [x] No tasks or implementation code have been created
 - [x] Specification is ready for plan review
 
 ## Notes
 
-- This feature evaluates each case from a fixed case definition plus the paired
-  feature 004 retrieval artifact and feature 005 answer record.
+- This feature evaluates each case from a fixed case definition plus the feature
+  006 pipeline record and its linked feature 004 and feature 005 artifacts.

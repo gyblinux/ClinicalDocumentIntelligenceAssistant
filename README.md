@@ -115,19 +115,22 @@ outcomes. Docker-backed retrieval services are not required when consuming an
 existing artifact.
 
 The persisted answer record preserves retrieval and answer identifiers, evidence,
-citations, tool calls, usage, latency, and errors for feature 006 evaluation.
+citations, tool calls, usage, latency, and errors for orchestration and later
+evaluation.
 Manual acceptance passed with the retrieval containers stopped.
 After reinstalling the editable package, the equivalent entry point is
 `clinical-doc-answer`.
 
-### Evaluation scope
+### Next scope
 
-Feature 006 remains preliminary:
+The next features remain at their specification gates:
 
-- [Reproducible RAG evaluation](specs/006-rag-evaluation/spec.md)
+- [Question-to-answer orchestration](specs/006-question-answer-orchestration/spec.md)
+- [Reproducible RAG evaluation](specs/007-rag-evaluation/spec.md)
 
-Feature 006 will consume each evaluation case with its paired feature 004
-retrieval artifact and feature 005 answer record, keeping retrieval and answer
+Feature 006 will accept a user question, run fresh feature 004 retrieval, invoke
+feature 005 answering, and persist a pipeline record linking both stage artifacts.
+Feature 007 will evaluate those linked records while keeping retrieval and answer
 metrics attributable to separate stages.
 
 ## Spec-Driven Development

@@ -167,20 +167,20 @@ A `failed` artifact uses the same identity and evidence snapshot fields, with:
 Partial claims must not be included when any citation or model-response validation
 fails.
 
-## Feature 006 Handoff
+## Feature 006 and 007 Handoff
 
-Feature 006 consumes three versioned inputs per evaluation case:
+Feature 006 composes the lower-level stages into one linked pipeline record:
 
-1. The fixed evaluation case.
-2. The feature 004 retrieval run that produced the evidence.
-3. The feature 005 answer record that references that retrieval run.
+1. The user's question.
+2. The feature 004 retrieval run produced for that question.
+3. The feature 005 answer record produced from that retrieval run.
 
 The answer record provides claims, validated citations, abstention or failure
 status, tool activity, latency, and token usage. The retrieval run provides rank,
 score, retrieval status, and retrieval-stage errors. A matching `retrieval_id`
 links the two artifacts.
 
-The answer record preserves the answer-side outputs used for scoring, while the
-fixed case supplies expected evidence and reference facts. The answer record is
-not a substitute for the retrieval artifact when evaluating retrieval relevance or
-diagnosing retrieval failures.
+Feature 007 consumes the feature 006 pipeline record for each fixed evaluation
+case. The fixed case supplies expected evidence and reference facts. The answer
+record is not a substitute for the retrieval artifact when evaluating retrieval
+relevance or diagnosing retrieval failures.

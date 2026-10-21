@@ -12,7 +12,9 @@
 
 **Answer feature**: [Evidence-Grounded Answers](../005-evidence-grounded-answers/spec.md)
 
-**Evaluation feature**: [Reproducible RAG Evaluation](../006-rag-evaluation/spec.md)
+**Orchestration feature**: [Question-to-Answer Orchestration](../006-question-answer-orchestration/spec.md)
+
+**Evaluation feature**: [Reproducible RAG Evaluation](../007-rag-evaluation/spec.md)
 
 ## Verdict
 
@@ -38,13 +40,14 @@ deterministic chunks. Feature 004 indexes those chunks and returns ranked eviden
 with source provenance.
 
 Feature 005 now provides the implemented single-turn answering stage. Feature 006
-remains specification-only and covers reproducible retrieval/answer evaluation.
-Neither adds multi-agent behavior; feature 006 still requires its own approved
-plan and tasks.
+adds the planned question-to-answer composition layer, and feature 007 evaluates
+the resulting pipeline records. None adds multi-agent behavior; features 006 and
+007 still require separate approved plans and tasks.
 
-Feature 006 evaluates each case from a fixed case definition plus the paired
-feature 004 retrieval artifact and feature 005 answer record. Keeping both inputs
-preserves attribution between retrieval failures and answer-generation failures.
+Feature 006 accepts each user question, performs fresh retrieval, invokes
+answering, and links the resulting artifacts. Feature 007 evaluates each fixed case
+from the pipeline record plus its underlying retrieval and answer artifacts,
+preserving attribution between retrieval and answer-generation failures.
 
 ## Stage Assessment
 

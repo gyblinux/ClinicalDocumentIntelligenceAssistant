@@ -39,4 +39,4 @@
 
 - This refinement treats feature 005 as a single-turn answer stage. It consumes
   the feature 004 run as its question and evidence source, validates citation
-  identity, and leaves retrieval quality and semantic faithfulness to feature 006.
+  identity, and leaves retrieval quality and semantic faithfulness to feature 007.

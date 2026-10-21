@@ -68,7 +68,7 @@ small public trial corpus
   question and retrieved evidence, and every accepted claim requires a valid
   citation.
 - **Reproducible evaluation**: Answer inputs, prompt/model versions, evidence,
-  tool activity, citations, usage, and errors are recorded for feature 006.
+  tool activity, citations, usage, and errors are recorded for feature 007.
 - **Independent stages**: The answer stage consumes an immutable retrieval artifact
   and stops before evaluation scoring.
 - **Small scope**: One bounded model workflow, one metadata tool, one CLI, and no
@@ -224,7 +224,7 @@ Application code, not the model, owns citation acceptance:
   retrieval input or the tool result; model-authored provenance is disregarded.
 
 This validates citation identity and provenance only. It does not prove semantic
-entailment. Feature 006 measures retrieval relevance and answer faithfulness.
+entailment. Feature 007 measures retrieval relevance and answer faithfulness.
 
 ### Model and Tool Bounds
 
@@ -257,12 +257,12 @@ The answer stage persists one self-contained record per run. It contains:
 Artifacts are written atomically. A failed run retains enough input and error
 information for review, but it never contains a partially accepted answer.
 
-This record is the feature 005 handoff to feature 006. Evaluation combines the
-record with the original feature 004 retrieval artifact and a fixed evaluation
-case. Answer-side metrics use the record's claims, citations, status, tool calls,
-latency, and usage. Retrieval-side metrics use the original ranking, scores,
-status, and retrieval errors. The answer record is not treated as a replacement
-for the retrieval artifact.
+This record is the feature 005 handoff to feature 007 evaluation. Feature 006
+combines it with the original feature 004 retrieval artifact in one pipeline
+record. Answer-side metrics use the record's claims, citations, status, tool
+calls, latency, and usage. Retrieval-side metrics use the original ranking,
+scores, status, and retrieval errors. The answer record is not treated as a
+replacement for the retrieval artifact.
 
 ### CLI
 
@@ -335,5 +335,5 @@ future faithfulness evaluation remain attributable.
 
 ## Next Gate
 
-Feature 005 is complete. Feature 006 remains at its specification gate and must
-proceed through its own clarification, plan, tasks, and implementation approvals.
+Feature 005 is complete. Feature 006 orchestration and feature 007 evaluation
+remain at their specification gates and require separate plan and task approvals.

@@ -95,10 +95,11 @@ the workflow completes.
 **Why this priority**: A durable answer record keeps the stage reproducible and
 reviewable instead of exposing only transient console output.
 
-The answer record is also the feature 005 handoff to feature 006. Feature 006
-combines it with the corresponding feature 004 retrieval artifact and a fixed
-evaluation case. The answer record supplies answer-side outcomes; the retrieval
-artifact remains the source for retrieval ranking and retrieval-stage errors.
+The answer record is also the feature 005 handoff to feature 007 evaluation.
+Feature 006 composes it with the corresponding feature 004 retrieval artifact in
+one pipeline record. The answer record supplies answer-side outcomes; the
+retrieval artifact remains the source for retrieval ranking and retrieval-stage
+errors.
 
 **Independent Test**: Run a supported and an unsupported question and verify both
 persisted answer records contain complete status and provenance.
@@ -113,7 +114,7 @@ persisted answer records contain complete status and provenance.
    the canonical public source provenance from retrieval or the recorded metadata
    lookup, not model-authored provenance.
 4. **Given** a persisted answer record and its corresponding retrieval artifact,
-   **When** feature 006 evaluation begins, **Then** it can associate the case with
+   **When** feature 007 evaluation begins, **Then** it can associate the case with
    both stages and score answer-side outcomes without rerunning the answer stage.
 
 ## Scope Boundaries
@@ -176,7 +177,7 @@ persisted answer records contain complete status and provenance.
   documents and is not clinical advice or decision-making.
 - **FR-014**: The workflow MUST stop before evaluation scoring.
 - **FR-015**: The persisted answer record MUST preserve its retrieval identity and
-  the answer outcomes needed by feature 006 for citation, faithfulness, refusal,
+  the answer outcomes needed by feature 007 for citation, faithfulness, refusal,
   latency, and usage scoring.
 
 ### Key Entities
@@ -212,7 +213,7 @@ persisted answer records contain complete status and provenance.
 - **SC-007**: A saved retrieval run can be processed by the answer workflow without
   a live vector-search service.
 - **SC-008**: Every returned answer includes the research-summary disclaimer.
-- **SC-009**: Feature 006 can associate every persisted answer record with its
+- **SC-009**: Feature 007 can associate every persisted answer record with its
   corresponding retrieval artifact and score answer-side outcomes without
   regenerating that answer.
 
@@ -227,10 +228,11 @@ persisted answer records contain complete status and provenance.
   must remain conservative.
 - Application code validates citation identity and canonical provenance. It does
   not prove that every claim logically follows from its citation.
-- Semantic faithfulness and retrieval quality are measured by feature 006.
-- Feature 006 consumes a fixed evaluation case, the corresponding feature 004
-  retrieval artifact, and the feature 005 answer record. The answer record alone
-  is not treated as a substitute for retrieval rank, score, status, or errors.
+- Semantic faithfulness and retrieval quality are measured by feature 007.
+- Feature 006 produces a pipeline record linking the corresponding feature 004
+  retrieval artifact and feature 005 answer record. Feature 007 consumes that
+  record plus a fixed evaluation case; the answer record alone is not treated as a
+  substitute for retrieval rank, score, status, or errors.
 - One configured answer model performs answering and optional metadata tool use.
 - Live retrieval services are required only to create or refresh a retrieval run,
   not to consume an existing run.

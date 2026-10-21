@@ -1,22 +1,22 @@
 # Feature Specification: Reproducible RAG Evaluation
 
-**Feature Branch**: `006-rag-evaluation`
+**Feature Branch**: `007-rag-evaluation`
 
 **Created**: 2026-10-21
 
 **Status**: Draft - preliminary
 
-**Input**: Evaluate paired feature 004 retrieval artifacts and feature 005 answer
-records using 20-40 fixed questions, per-case and aggregate metrics, a recorded
-baseline, and one controlled improvement comparison.
+**Input**: Evaluate linked feature 006 question-to-answer pipeline records using
+20-40 fixed questions, per-case and aggregate metrics, a recorded baseline, and
+one controlled improvement comparison.
 
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Run a Fixed Baseline Evaluation (Priority: P1)
 
-A user evaluates a versioned question set using paired retrieval and answer
-records, either by producing them for each case or by loading saved artifacts, and
-receives per-case and aggregate quality results.
+A user evaluates a versioned question set through the feature 006 orchestration
+interface, either by producing pipeline records for each case or by loading saved
+records, and receives per-case and aggregate quality results.
 
 **Why this priority**: Reproducible measurement is required to assess the RAG
 pipeline.
@@ -27,7 +27,8 @@ comparable result manifests.
 **Acceptance Scenarios**:
 
 1. **Given** a valid 20-40 case evaluation set, **When** baseline evaluation runs,
-   **Then** every case links one retrieval outcome to one persisted answer record.
+   **Then** every case has one feature 006 pipeline record linking its retrieval
+   and answer artifacts.
 2. **Given** unchanged inputs, recorded configuration, and test set, **When**
    evaluation reruns, **Then** versions and per-case results remain comparable.
 
@@ -93,8 +94,9 @@ declared setting, then verify the report identifies that setting.
   or reference answer, and scoring rubric.
 - **FR-003**: Unanswerable cases MUST expect an explicit abstention rather than an
   answer.
-- **FR-004**: Evaluation MUST consume or produce, for every case, one feature 004
-  retrieval artifact and one feature 005 answer record linked by retrieval ID.
+- **FR-004**: Evaluation MUST consume or produce, for every case, one feature 006
+  pipeline record that links one feature 004 retrieval artifact and one feature
+  005 answer record.
 - **FR-005**: Retrieval relevance MUST be scored separately from answer quality.
 - **FR-006**: Citation validity MUST verify that cited evidence was supplied to
   answering.
@@ -106,19 +108,19 @@ declared setting, then verify the report identifies that setting.
 - **FR-011**: A comparison MUST change exactly one declared configuration variable
   and record both configurations.
 - **FR-012**: Invalid cases or uncontrolled comparisons MUST fail clearly.
-- **FR-013**: The report MUST identify the retrieval artifact and answer record used
-  for every case.
+- **FR-013**: The report MUST identify the pipeline record, retrieval artifact, and
+  answer record used for every case.
 
 ### Key Entities
 
 - **Evaluation Case**: Fixed question, answerability, expected evidence,
   reference facts, and rubric.
-- **Evaluation Input Pair**: One case's feature 004 retrieval artifact and matching
-  feature 005 answer record.
+- **Evaluation Pipeline Input**: One case's feature 006 pipeline record and the
+  linked feature 004 and feature 005 artifacts.
 - **Evaluation Set**: Versioned collection of 20-40 cases.
 - **Metric Result**: Retrieval, citation, faithfulness, refusal, latency, or cost
   score for a case.
-- **Evaluation Run**: Test-set version, retrieval/answer artifact links,
+- **Evaluation Run**: Test-set version, pipeline/retrieval/answer artifact links,
   corpus/index/model/prompt configuration, per-case results, aggregates, and
   errors.
 - **Comparison Run**: Baseline and candidate configurations with one changed
@@ -136,12 +138,14 @@ declared setting, then verify the report identifies that setting.
   preserved for later comparison.
 - **SC-006**: Two runs with unchanged versions and inputs produce comparable
   reports.
-- **SC-007**: Every evaluated case identifies exactly one retrieval artifact and
-  one matching answer record.
+- **SC-007**: Every evaluated case identifies exactly one feature 006 pipeline
+  record and its matching retrieval and answer artifacts.
 
 ## Assumptions
 
-- Features 004 and 005 provide retrieval artifacts and persisted answer records.
+- Features 004, 005, and 006 are available.
+- Feature 006 pipeline records are the evaluation entrypoint and link the
+  underlying retrieval and answer artifacts.
 - The feature 005 answer record is the answer-side evaluation input; the paired
   feature 004 artifact remains necessary for retrieval scoring and diagnostics.
 - The initial test set remains in the 20-40 case range.
