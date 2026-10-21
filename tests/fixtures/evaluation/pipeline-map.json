@@ -1,0 +1,22 @@
+{
+  "case-001": "tests/fixtures/evaluation/artifacts/pipeline.json",
+  "case-002": "tests/fixtures/evaluation/artifacts/pipeline.json",
+  "case-003": "tests/fixtures/evaluation/artifacts/pipeline.json",
+  "case-004": "tests/fixtures/evaluation/artifacts/pipeline.json",
+  "case-005": "tests/fixtures/evaluation/artifacts/pipeline.json",
+  "case-006": "tests/fixtures/evaluation/artifacts/pipeline.json",
+  "case-007": "tests/fixtures/evaluation/artifacts/pipeline.json",
+  "case-008": "tests/fixtures/evaluation/artifacts/pipeline.json",
+  "case-009": "tests/fixtures/evaluation/artifacts/pipeline.json",
+  "case-010": "tests/fixtures/evaluation/artifacts/pipeline.json",
+  "case-011": "tests/fixtures/evaluation/artifacts/pipeline.json",
+  "case-012": "tests/fixtures/evaluation/artifacts/pipeline.json",
+  "case-013": "tests/fixtures/evaluation/artifacts/pipeline.json",
+  "case-014": "tests/fixtures/evaluation/artifacts/pipeline.json",
+  "case-015": "tests/fixtures/evaluation/artifacts/pipeline.json",
+  "case-016": "tests/fixtures/evaluation/artifacts/pipeline.json",
+  "case-017": "tests/fixtures/evaluation/artifacts/pipeline.json",
+  "case-018": "tests/fixtures/evaluation/artifacts/pipeline.json",
+  "case-019": "tests/fixtures/evaluation/artifacts/pipeline.json",
+  "case-020": "tests/fixtures/evaluation/artifacts/pipeline.json"
+}

@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0",
+  "retrieval_id": "retrieval-fixture-no-results",
+  "created_at": "2026-10-21T11:58:00Z",
+  "query": {
+    "text": "What were the final reported results?",
+    "collection": "clinical_evidence_v1",
+    "limit": 5
+  },
+  "tei_model": "BAAI/bge-small-en-v1.5",
+  "collection": "clinical_evidence_v1",
+  "results": [],
+  "status": "no_results",
+  "errors": []
+}

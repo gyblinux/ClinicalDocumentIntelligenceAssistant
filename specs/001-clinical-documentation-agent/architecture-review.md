@@ -1,8 +1,20 @@
 # Architecture Review: Public Clinical Research Q&A
 
-**Status**: Reviewed for fit; not an approved implementation plan
+**Status**: Reviewed for fit; delivered through approved feature slices
 
 **Specification**: [spec.md](spec.md)
+
+**First feature**: [Research Document Discovery and Screening](../002-research-doc-discovery/spec.md)
+
+**Next feature**: [Evidence Corpus Assembly and Chunking](../003-evidence-corpus-chunking/spec.md)
+
+**Follow-on feature**: [Evidence Embedding and Vector Retrieval](../004-evidence-vector-retrieval/spec.md)
+
+**Answer feature**: [Evidence-Grounded Answers](../005-evidence-grounded-answers/spec.md)
+
+**Orchestration feature**: [Question-to-Answer Orchestration](../006-question-answer-orchestration/spec.md)
+
+**Evaluation feature**: [Reproducible RAG Evaluation](../007-rag-evaluation/spec.md)
 
 ## Verdict
 
@@ -18,6 +30,27 @@ question-answering agent. Multi-agent collaboration is not justified yet. It add
 coordination cost, latency, token use, non-determinism, and harder failure
 attribution before the project has measured a concrete need.
 
+The first feature slice is narrower than full ingestion: one agent discovers
+candidates from ClinicalTrials.gov, uses the current-time capability, and returns
+screened records. PDF parsing remains deferred, while retrieval, question
+answering, and evaluation are separate downstream stages.
+
+Feature 003 converts accepted records into normalized evidence documents and
+deterministic chunks. Feature 004 indexes those chunks and returns ranked evidence
+with source provenance.
+
+Feature 005 provides the implemented single-turn answering stage. Feature 006 now
+provides the implemented question-to-answer composition layer, and feature 007
+will evaluate the resulting pipeline records. None adds multi-agent behavior;
+feature 007 still requires its own approved plan and tasks.
+
+Feature 006 accepts each user question, performs fresh retrieval, invokes
+answering, and links the resulting artifacts. Feature 007 evaluates each fixed case
+from the pipeline record plus its underlying retrieval and answer artifacts,
+preserving attribution between retrieval and answer-generation failures. It now
+also provides a read-only presentation of claims and citations; benchmark results
+remain separate from any per-answer trust claim.
+
 ## Stage Assessment
 
 | Stage | Keep in the baseline | Defer until evidence justifies it |
@@ -29,8 +62,8 @@ attribution before the project has measured a concrete need.
 
 ## Essential Controls
 
-1. **Stage entry points**: Ingestion, retrieval/answering, and evaluation must run
-   separately. A user can inspect a stage output and stop before the next stage.
+1. **Stage entry points**: Fine-grained stages must exchange versioned local
+   artifacts. A user can inspect an artifact and stop before the next stage.
 2. **Run manifest**: Record corpus version, chunking settings, embedding model,
    prompt version, answer model, test-set version, and timestamp.
 3. **Inspectable artifacts**: Preserve the document list, extracted metadata,
@@ -75,7 +108,6 @@ It should not replace fixed test cases, citation checks, or human spot checks.
 
 ## Decision Gate
 
-This review recommends the architecture with the deferred items above. It does
-not approve a plan, create tasks, or authorize implementation. The next SDD stage
-begins only after the user explicitly approves the architecture direction for
-`$speckit-plan`.
+This review endorses the architecture with the deferred items above. The project
+has implemented features 002 through 004 as bounded slices. Each later feature
+still requires its own approved plan, task breakdown, and implementation gate.

@@ -8,14 +8,59 @@ All notable project changes are recorded here.
 
 - Initialize GitHub Spec Kit for Codex with a project constitution, baseline
   practice-project specification, and quality checklist.
+- Define the first feature as single-source research discovery with current-time
+  context, deterministic screening, and a stop before document ingestion.
+- Add the `clinical-doc-discover` prototype with a bounded research agent,
+  ClinicalTrials.gov search, deterministic screening, and JSON run output.
+- Add the `clinical-doc-corpus` prototype with detailed source retrieval,
+  normalized evidence documents, deterministic chunks, and local manifests.
+- Add local TEI/Qdrant indexing and evidence retrieval with deterministic point
+  IDs, index manifests, and citation-ready search results.
+- Add a reproducible manual acceptance guide for Docker-backed retrieval.
+- Add the `clinical-doc-answer` stage for single-turn evidence-grounded answers,
+  claim-level citation validation, allowlisted trial metadata, safe abstention,
+  persisted answer records for later orchestration/evaluation, and a passing live
+  Docker-off acceptance.
+- Add the `clinical-doc-ask` orchestration command for fresh question-specific
+  retrieval, feature 005 answering, linked stage artifacts, and inspectable
+  pipeline records.
+- Add reproducible RAG evaluation with a fixed 20-case GLP-1 set, deterministic
+  metrics, failure diagnoses, one-variable comparison, and persisted baseline.
+- Add deterministic plain-text answer presentation with claim/citation integrity,
+  deduplicated sources, versioned exact verdict matching, and human-review
+  persistence.
+- Define a refined single-turn evidence-answering scope, approved plan, and task
+  list; preserve the preliminary evaluation scope; and record an ignored
+  requirements-gap baseline for final comparison. Define the paired
+  retrieval/answer artifact handoff to evaluation.
+- Define feature 006 as the user-facing question-to-answer orchestration layer and
+  move reproducible RAG evaluation to feature 007 so evaluation follows the
+  composed pipeline.
+- Extend feature 007 with a deterministic read-only answer presentation,
+  claim/source preservation, versioned per-answer checks, failure diagnostics, and
+  an explicit prohibition on misleading per-answer trust percentages.
+- Record a delegated AI-assisted five-case readability review at 9/10, including
+  transparency about structure limitations and unverified multi-source/conflict
+  scenarios.
+- Define persisted discovery artifacts, empty-input handling, multi-run
+  deduplication for feature 003, and baseline retrieval scope for feature 004.
 
 ### Changed
 
+- Improve corpus chunk boundaries, transient source retries, structured source
+  failures, and concise filesystem error handling.
+- Strengthen feature 007 artifact validation, metadata-citation checks, Windows
+  UTF-8 BOM loading, and comparison diagnostics; consolidate JSON persistence and
+  restore module-level `present` command dispatch.
+- Persist discovery runs as schema-versioned JSON artifacts for feature 003 and
+  keep console output safe for non-UTF-8 Windows terminals.
 - Refocus the baseline on a small public clinical research Q&A practice project
   with evidence-grounded answers and reproducible evaluation; architecture and
   implementation remain pending.
 - Document a minimal single-agent architecture review and defer multi-agent and
   infrastructure overhead until baseline results justify it.
+- Clarify the research agent's typing and error boundaries for more readable,
+  maintainable tool-call orchestration.
 
 ## [0.1.0] - 2026-10-21
 

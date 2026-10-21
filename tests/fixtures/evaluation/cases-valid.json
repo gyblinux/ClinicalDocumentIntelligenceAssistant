@@ -1,0 +1,186 @@
+{
+  "schema_version": "1.0",
+  "set_version": "evaluation-fixture-v1",
+  "cases": [
+    {
+      "case_id": "case-001",
+      "question": "What did NCT07424430 aim to evaluate?",
+      "answerability": "answerable",
+      "expected_evidence_ids": ["chunk-7f7563be8042d8cdfa51a2fa"],
+      "required_key_points": ["cardio-kidney-metabolic outcomes"],
+      "forbidden_statements": [],
+      "rubric_version": "rag-rubric-v1"
+    },
+    {
+      "case_id": "case-002",
+      "question": "What did NCT07424430 aim to evaluate?",
+      "answerability": "answerable",
+      "expected_evidence_ids": ["chunk-7f7563be8042d8cdfa51a2fa"],
+      "required_key_points": ["real-world effectiveness"],
+      "forbidden_statements": [],
+      "rubric_version": "rag-rubric-v1"
+    },
+    {
+      "case_id": "case-003",
+      "question": "What did NCT07424430 aim to evaluate?",
+      "answerability": "answerable",
+      "expected_evidence_ids": ["chunk-7f7563be8042d8cdfa51a2fa"],
+      "required_key_points": ["HbA1c"],
+      "forbidden_statements": [],
+      "rubric_version": "rag-rubric-v1"
+    },
+    {
+      "case_id": "case-004",
+      "question": "What did NCT07424430 aim to evaluate?",
+      "answerability": "answerable",
+      "expected_evidence_ids": ["chunk-7f7563be8042d8cdfa51a2fa"],
+      "required_key_points": ["semaglutide"],
+      "forbidden_statements": [],
+      "rubric_version": "rag-rubric-v1"
+    },
+    {
+      "case_id": "case-005",
+      "question": "What did NCT07424430 aim to evaluate?",
+      "answerability": "answerable",
+      "expected_evidence_ids": ["chunk-7f7563be8042d8cdfa51a2fa"],
+      "required_key_points": ["type 2 diabetes"],
+      "forbidden_statements": [],
+      "rubric_version": "rag-rubric-v1"
+    },
+    {
+      "case_id": "case-006",
+      "question": "What did NCT07424430 aim to evaluate?",
+      "answerability": "answerable",
+      "expected_evidence_ids": ["chunk-7f7563be8042d8cdfa51a2fa"],
+      "required_key_points": ["obesity"],
+      "forbidden_statements": [],
+      "rubric_version": "rag-rubric-v1"
+    },
+    {
+      "case_id": "case-007",
+      "question": "What did NCT07424430 aim to evaluate?",
+      "answerability": "answerable",
+      "expected_evidence_ids": ["chunk-7f7563be8042d8cdfa51a2fa"],
+      "required_key_points": ["retrospective"],
+      "forbidden_statements": [],
+      "rubric_version": "rag-rubric-v1"
+    },
+    {
+      "case_id": "case-008",
+      "question": "What did NCT07424430 aim to evaluate?",
+      "answerability": "answerable",
+      "expected_evidence_ids": ["chunk-7f7563be8042d8cdfa51a2fa"],
+      "required_key_points": ["LMC Diabetes Registry"],
+      "forbidden_statements": [],
+      "rubric_version": "rag-rubric-v1"
+    },
+    {
+      "case_id": "case-009",
+      "question": "What did NCT07424430 aim to evaluate?",
+      "answerability": "answerable",
+      "expected_evidence_ids": ["chunk-7f7563be8042d8cdfa51a2fa"],
+      "required_key_points": ["baseline"],
+      "forbidden_statements": [],
+      "rubric_version": "rag-rubric-v1"
+    },
+    {
+      "case_id": "case-010",
+      "question": "What did NCT07424430 aim to evaluate?",
+      "answerability": "answerable",
+      "expected_evidence_ids": ["chunk-7f7563be8042d8cdfa51a2fa"],
+      "required_key_points": ["3 years"],
+      "forbidden_statements": [],
+      "rubric_version": "rag-rubric-v1"
+    },
+    {
+      "case_id": "case-011",
+      "question": "What did NCT07424430 aim to evaluate?",
+      "answerability": "answerable",
+      "expected_evidence_ids": ["chunk-7f7563be8042d8cdfa51a2fa"],
+      "required_key_points": ["other AHAs"],
+      "forbidden_statements": [],
+      "rubric_version": "rag-rubric-v1"
+    },
+    {
+      "case_id": "case-012",
+      "question": "What did NCT07424430 aim to evaluate?",
+      "answerability": "answerable",
+      "expected_evidence_ids": ["chunk-7f7563be8042d8cdfa51a2fa"],
+      "required_key_points": ["primary outcome"],
+      "forbidden_statements": [],
+      "rubric_version": "rag-rubric-v1"
+    },
+    {
+      "case_id": "case-013",
+      "question": "What did NCT07424430 aim to evaluate?",
+      "answerability": "answerable",
+      "expected_evidence_ids": ["chunk-7f7563be8042d8cdfa51a2fa"],
+      "required_key_points": ["adults"],
+      "forbidden_statements": [],
+      "rubric_version": "rag-rubric-v1"
+    },
+    {
+      "case_id": "case-014",
+      "question": "What did NCT07424430 aim to evaluate?",
+      "answerability": "answerable",
+      "expected_evidence_ids": ["chunk-7f7563be8042d8cdfa51a2fa"],
+      "required_key_points": ["diabetes"],
+      "forbidden_statements": [],
+      "rubric_version": "rag-rubric-v1"
+    },
+    {
+      "case_id": "case-015",
+      "question": "What did NCT07424430 aim to evaluate?",
+      "answerability": "answerable",
+      "expected_evidence_ids": ["chunk-7f7563be8042d8cdfa51a2fa"],
+      "required_key_points": ["United Kingdom"],
+      "forbidden_statements": [],
+      "rubric_version": "rag-rubric-v1"
+    },
+    {
+      "case_id": "case-016",
+      "question": "What did NCT07424430 aim to evaluate?",
+      "answerability": "answerable",
+      "expected_evidence_ids": ["chunk-7f7563be8042d8cdfa51a2fa"],
+      "required_key_points": ["primary outcome"],
+      "forbidden_statements": [],
+      "rubric_version": "rag-rubric-v1"
+    },
+    {
+      "case_id": "case-017",
+      "question": "What did NCT07424430 aim to evaluate?",
+      "answerability": "answerable",
+      "expected_evidence_ids": ["chunk-7f7563be8042d8cdfa51a2fa"],
+      "required_key_points": ["semaglutide"],
+      "forbidden_statements": [],
+      "rubric_version": "rag-rubric-v1"
+    },
+    {
+      "case_id": "case-018",
+      "question": "What did NCT07424430 aim to evaluate?",
+      "answerability": "answerable",
+      "expected_evidence_ids": ["chunk-7f7563be8042d8cdfa51a2fa"],
+      "required_key_points": ["outcomes"],
+      "forbidden_statements": [],
+      "rubric_version": "rag-rubric-v1"
+    },
+    {
+      "case_id": "case-019",
+      "question": "What were the final reported cardiovascular results?",
+      "answerability": "unanswerable",
+      "expected_evidence_ids": [],
+      "required_key_points": [],
+      "forbidden_statements": ["final results"],
+      "rubric_version": "rag-rubric-v1"
+    },
+    {
+      "case_id": "case-020",
+      "question": "What were the final reported cardiovascular results?",
+      "answerability": "unanswerable",
+      "expected_evidence_ids": [],
+      "required_key_points": [],
+      "forbidden_statements": ["final results"],
+      "rubric_version": "rag-rubric-v1"
+    }
+  ]
+}

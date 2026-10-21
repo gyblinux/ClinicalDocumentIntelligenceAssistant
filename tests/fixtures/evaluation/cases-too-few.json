@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0",
+  "set_version": "evaluation-too-few-v1",
+  "cases": [
+    {
+      "case_id": "case-001",
+      "question": "Question",
+      "answerability": "answerable",
+      "expected_evidence_ids": ["chunk-1"],
+      "required_key_points": ["answer"],
+      "forbidden_statements": [],
+      "rubric_version": "rag-rubric-v1"
+    }
+  ]
+}

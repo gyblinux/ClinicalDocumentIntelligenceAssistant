@@ -5,12 +5,14 @@ build-backend = "hatchling.build"
 [project]
 name = "clinical-doc-assist"
 version = "0.1.0"
-description = "Starter scaffold for a clinical documentation agent using the OpenAI Python SDK with DeepSeek."
+description = "Practice clinical research discovery and evidence assistant."
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
+    "httpx>=0.27,<1",
     "openai>=1.99.1,<3",
     "python-dotenv>=1.0.1,<2",
+    "qdrant-client>=1.15,<2",
 ]
 
 [project.optional-dependencies]
@@ -21,6 +23,13 @@ dev = [
 
 [project.scripts]
 clinical-doc-assist = "clinical_doc_assist.cli:main"
+clinical-doc-discover = "clinical_doc_assist.research.cli:main"
+clinical-doc-corpus = "clinical_doc_assist.corpus.cli:main"
+clinical-doc-retrieve = "clinical_doc_assist.retrieval.cli:main"
+clinical-doc-answer = "clinical_doc_assist.answering.cli:main"
+clinical-doc-ask = "clinical_doc_assist.orchestration.cli:main"
+clinical-doc-eval = "clinical_doc_assist.evaluation.cli:main_eval"
+clinical-doc-present = "clinical_doc_assist.evaluation.cli:main_present"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/clinical_doc_assist"]
@@ -36,4 +45,3 @@ target-version = "py311"
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B", "SIM"]
-
