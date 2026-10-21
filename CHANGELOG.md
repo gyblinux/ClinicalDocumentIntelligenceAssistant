@@ -14,6 +14,9 @@ All notable project changes are recorded here.
   ClinicalTrials.gov search, deterministic screening, and JSON run output.
 - Add the `clinical-doc-corpus` prototype with detailed source retrieval,
   normalized evidence documents, deterministic chunks, and local manifests.
+- Add local TEI/Qdrant indexing and evidence retrieval with deterministic point
+  IDs, index manifests, and citation-ready search results.
+- Add a reproducible manual acceptance guide for Docker-backed retrieval.
 - Define persisted discovery artifacts, empty-input handling, multi-run
   deduplication for feature 003, and baseline retrieval scope for feature 004.
 

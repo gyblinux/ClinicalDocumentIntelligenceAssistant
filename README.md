@@ -68,6 +68,38 @@ The output directory contains `manifest.json`, `documents.jsonl`, and
 failed; successful documents and failures remain inspectable in the manifest.
 The stage performs no LLM calls and stops before embeddings or retrieval.
 
+### Retrieval prototype
+
+Start the local TEI and Qdrant services:
+
+```powershell
+docker compose up -d
+```
+
+Index the current corpus:
+
+```powershell
+clinical-doc-retrieve index `
+  --corpus artifacts/corpus/glp1-pilot-v2 `
+  --collection clinical_evidence_v1
+```
+
+Retrieve evidence chunks:
+
+```powershell
+clinical-doc-retrieve search `
+  "What cardiovascular outcomes were reported for semaglutide?" `
+  --collection clinical_evidence_v1 `
+  --limit 5
+```
+
+The search returns ranked evidence chunks with source provenance. It does not
+generate an answer. The Python environment requires only `qdrant-client`; TEI
+keeps PyTorch and Transformers inside its Docker container.
+
+See [retrieval acceptance](docs/retrieval-acceptance.md) for the manual Docker
+startup, integration test, indexing, search, and idempotency checks.
+
 ## Spec-Driven Development
 
 The project advances through explicit, reviewable gates:

@@ -12,6 +12,7 @@ dependencies = [
     "httpx>=0.27,<1",
     "openai>=1.99.1,<3",
     "python-dotenv>=1.0.1,<2",
+    "qdrant-client>=1.15,<2",
 ]
 
 [project.optional-dependencies]
@@ -24,6 +25,7 @@ dev = [
 clinical-doc-assist = "clinical_doc_assist.cli:main"
 clinical-doc-discover = "clinical_doc_assist.research.cli:main"
 clinical-doc-corpus = "clinical_doc_assist.corpus.cli:main"
+clinical-doc-retrieve = "clinical_doc_assist.retrieval.cli:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/clinical_doc_assist"]
