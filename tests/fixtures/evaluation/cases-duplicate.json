@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0",
+  "set_version": "evaluation-duplicate-v1",
+  "cases": [
+    {
+      "case_id": "duplicate",
+      "question": "Question",
+      "answerability": "answerable",
+      "expected_evidence_ids": ["chunk-1"],
+      "required_key_points": ["answer"],
+      "forbidden_statements": [],
+      "rubric_version": "rag-rubric-v1"
+    },
+    {
+      "case_id": "duplicate",
+      "question": "Question",
+      "answerability": "answerable",
+      "expected_evidence_ids": ["chunk-1"],
+      "required_key_points": ["answer"],
+      "forbidden_statements": [],
+      "rubric_version": "rag-rubric-v1"
+    }
+  ]
+}

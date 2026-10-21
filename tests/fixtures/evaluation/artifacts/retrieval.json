@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "retrieval_id": "retrieval-fixture-eval",
+  "created_at": "2026-10-21T12:00:00Z",
+  "query": {
+    "text": "What did NCT07424430 aim to evaluate?",
+    "collection": "clinical_evidence_v1",
+    "limit": 5
+  },
+  "tei_model": "BAAI/bge-small-en-v1.5",
+  "collection": "clinical_evidence_v1",
+  "results": [
+    {
+      "rank": 1,
+      "score": 0.91,
+      "chunk_id": "chunk-7f7563be8042d8cdfa51a2fa",
+      "document_id": "doc-NCT07424430",
+      "nct_id": "NCT07424430",
+      "section": "summary",
+      "text": "The study evaluates semaglutide's real-world effectiveness on cardio-kidney-metabolic outcomes.",
+      "source_url": "https://clinicaltrials.gov/study/NCT07424430",
+      "content_hash": "773bb4f334782516bd7ec12073f0f7ddbbb0c47848ca9cf6a4802255e3f3b689"
+    }
+  ],
+  "status": "completed",
+  "errors": []
+}

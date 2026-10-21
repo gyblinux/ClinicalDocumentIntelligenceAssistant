@@ -1,0 +1,14 @@
+{
+  "reviewer": "fixture-reviewer",
+  "created_at": "2026-10-21T13:00:00Z",
+  "rubric_version": "human-readability-v1",
+  "case_ids": ["case-001", "case-002", "case-003", "case-019", "case-020"],
+  "scores": {
+    "direct_answer": 2,
+    "claim_completeness": 2,
+    "citation_clarity": 2,
+    "structure": 2,
+    "caution": 1
+  },
+  "notes": "All representative cases met the minimum readability threshold."
+}

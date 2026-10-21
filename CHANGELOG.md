@@ -24,6 +24,11 @@ All notable project changes are recorded here.
 - Add the `clinical-doc-ask` orchestration command for fresh question-specific
   retrieval, feature 005 answering, linked stage artifacts, and inspectable
   pipeline records.
+- Add reproducible RAG evaluation with a fixed 20-case GLP-1 set, deterministic
+  metrics, failure diagnoses, one-variable comparison, and persisted baseline.
+- Add deterministic plain-text answer presentation with claim/citation integrity,
+  deduplicated sources, versioned exact verdict matching, and human-review
+  persistence.
 - Define a refined single-turn evidence-answering scope, approved plan, and task
   list; preserve the preliminary evaluation scope; and record an ignored
   requirements-gap baseline for final comparison. Define the paired
@@ -31,6 +36,12 @@ All notable project changes are recorded here.
 - Define feature 006 as the user-facing question-to-answer orchestration layer and
   move reproducible RAG evaluation to feature 007 so evaluation follows the
   composed pipeline.
+- Extend feature 007 with a deterministic read-only answer presentation,
+  claim/source preservation, versioned per-answer checks, failure diagnostics, and
+  an explicit prohibition on misleading per-answer trust percentages.
+- Record a delegated AI-assisted five-case readability review at 9/10, including
+  transparency about structure limitations and unverified multi-source/conflict
+  scenarios.
 - Define persisted discovery artifacts, empty-input handling, multi-run
   deduplication for feature 003, and baseline retrieval scope for feature 004.
 
@@ -38,6 +49,9 @@ All notable project changes are recorded here.
 
 - Improve corpus chunk boundaries, transient source retries, structured source
   failures, and concise filesystem error handling.
+- Strengthen feature 007 artifact validation, metadata-citation checks, Windows
+  UTF-8 BOM loading, and comparison diagnostics; consolidate JSON persistence and
+  restore module-level `present` command dispatch.
 - Persist discovery runs as schema-versioned JSON artifacts for feature 003 and
   keep console output safe for non-UTF-8 Windows terminals.
 - Refocus the baseline on a small public clinical research Q&A practice project

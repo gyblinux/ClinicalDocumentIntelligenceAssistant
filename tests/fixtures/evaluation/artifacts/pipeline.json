@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "pipeline_id": "pipeline-fixture-eval",
+  "created_at": "2026-10-21T12:00:03Z",
+  "status": "answered",
+  "request": {
+    "question": "What did NCT07424430 aim to evaluate?",
+    "collection": "clinical_evidence_v1",
+    "limit": 5
+  },
+  "configuration": {
+    "collection": "clinical_evidence_v1",
+    "limit": 5,
+    "embedding_model": "BAAI/bge-small-en-v1.5",
+    "embedding_dimension": 384,
+    "answer_model": "fixture-model",
+    "prompt_version": "answering-v1"
+  },
+  "retrieval": {
+    "artifact_id": "retrieval-fixture-eval",
+    "path": "tests/fixtures/evaluation/artifacts/retrieval.json",
+    "status": "completed"
+  },
+  "answer": {
+    "artifact_id": "answer-fixture-eval",
+    "path": "tests/fixtures/evaluation/artifacts/answer.json",
+    "status": "completed"
+  },
+  "answer_summary": {
+    "answer_id": "answer-fixture-eval",
+    "status": "answered",
+    "claims": [
+      {
+        "claim_id": "claim-1",
+        "text": "The study evaluates semaglutide's real-world effectiveness on cardio-kidney-metabolic outcomes.",
+        "citation_ids": ["chunk-7f7563be8042d8cdfa51a2fa"]
+      }
+    ],
+    "reason": null,
+    "citation_ids": ["chunk-7f7563be8042d8cdfa51a2fa"]
+  },
+  "timing": {
+    "retrieval_ms": 500,
+    "answer_ms": 1000,
+    "total_ms": 1500
+  },
+  "errors": []
+}

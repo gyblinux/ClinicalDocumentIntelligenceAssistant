@@ -16,7 +16,7 @@ htmlcov/
 .venv/
 build/
 dist/
-artifacts/
+/artifacts/
 
 # Local requirements-gap baselines for review and final comparison
 review-gaps/

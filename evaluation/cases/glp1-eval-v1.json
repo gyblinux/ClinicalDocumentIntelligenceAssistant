@@ -1,0 +1,186 @@
+{
+  "schema_version": "1.0",
+  "set_version": "glp1-eval-v1",
+  "cases": [
+    {
+      "case_id": "glp1-001",
+      "question": "What is the focus of NCT07424430?",
+      "answerability": "answerable",
+      "expected_evidence_ids": ["chunk-a98d66669a6aee6261f0ecf5"],
+      "required_key_points": ["cardio-kidney-metabolic outcomes"],
+      "forbidden_statements": [],
+      "rubric_version": "rag-rubric-v1"
+    },
+    {
+      "case_id": "glp1-002",
+      "question": "What is the status of NCT07424430?",
+      "answerability": "answerable",
+      "expected_evidence_ids": ["chunk-dab68c14129ac6a9d3972419"],
+      "required_key_points": ["COMPLETED"],
+      "forbidden_statements": [],
+      "rubric_version": "rag-rubric-v1"
+    },
+    {
+      "case_id": "glp1-003",
+      "question": "What is the WAIT study about?",
+      "answerability": "answerable",
+      "expected_evidence_ids": ["chunk-7b3854bc2f09ac6c493df377"],
+      "required_key_points": ["atrial fibrillation"],
+      "forbidden_statements": [],
+      "rubric_version": "rag-rubric-v1"
+    },
+    {
+      "case_id": "glp1-004",
+      "question": "What is the recruitment status of NCT07275697?",
+      "answerability": "answerable",
+      "expected_evidence_ids": ["chunk-fec2b7d3e55fe6a71e32d25d"],
+      "required_key_points": ["RECRUITING"],
+      "forbidden_statements": [],
+      "rubric_version": "rag-rubric-v1"
+    },
+    {
+      "case_id": "glp1-005",
+      "question": "What population is studied in NCT06967389?",
+      "answerability": "answerable",
+      "expected_evidence_ids": ["chunk-ac2e6e6323d25f845f33c902"],
+      "required_key_points": ["children", "obesity"],
+      "forbidden_statements": [],
+      "rubric_version": "rag-rubric-v1"
+    },
+    {
+      "case_id": "glp1-006",
+      "question": "What is the status of NCT06967389?",
+      "answerability": "answerable",
+      "expected_evidence_ids": ["chunk-dff28c38a4148310dcfced49"],
+      "required_key_points": ["RECRUITING"],
+      "forbidden_statements": [],
+      "rubric_version": "rag-rubric-v1"
+    },
+    {
+      "case_id": "glp1-007",
+      "question": "Who is the target population in NCT07057310?",
+      "answerability": "answerable",
+      "expected_evidence_ids": ["chunk-2e06fdb3cff3a54e5439b7c0"],
+      "required_key_points": ["postmenopausal women"],
+      "forbidden_statements": [],
+      "rubric_version": "rag-rubric-v1"
+    },
+    {
+      "case_id": "glp1-008",
+      "question": "What is the status of NCT07057310?",
+      "answerability": "answerable",
+      "expected_evidence_ids": ["chunk-c1e3b1056ea968a32fbf02a1"],
+      "required_key_points": ["ENROLLING_BY_INVITATION"],
+      "forbidden_statements": [],
+      "rubric_version": "rag-rubric-v1"
+    },
+    {
+      "case_id": "glp1-009",
+      "question": "What is the focus of NCT07866183?",
+      "answerability": "answerable",
+      "expected_evidence_ids": ["chunk-c418063dfbe1974516076a18"],
+      "required_key_points": ["class I obesity"],
+      "forbidden_statements": [],
+      "rubric_version": "rag-rubric-v1"
+    },
+    {
+      "case_id": "glp1-010",
+      "question": "What is the status of NCT07866183?",
+      "answerability": "answerable",
+      "expected_evidence_ids": ["chunk-98ba8670b1e2e2a43193a00d"],
+      "required_key_points": ["RECRUITING"],
+      "forbidden_statements": [],
+      "rubric_version": "rag-rubric-v1"
+    },
+    {
+      "case_id": "glp1-011",
+      "question": "What intervention is studied in NCT07734792?",
+      "answerability": "answerable",
+      "expected_evidence_ids": ["chunk-3e0206de622bae98c7b9fc9f"],
+      "required_key_points": ["tirzepatide"],
+      "forbidden_statements": [],
+      "rubric_version": "rag-rubric-v1"
+    },
+    {
+      "case_id": "glp1-012",
+      "question": "What is the status of NCT07734792?",
+      "answerability": "answerable",
+      "expected_evidence_ids": ["chunk-18898dd226d039c8ac04b604"],
+      "required_key_points": ["NOT_YET_RECRUITING"],
+      "forbidden_statements": [],
+      "rubric_version": "rag-rubric-v1"
+    },
+    {
+      "case_id": "glp1-013",
+      "question": "What population is targeted in NCT07202247?",
+      "answerability": "answerable",
+      "expected_evidence_ids": ["chunk-3418354b9fe37d5871abbec5"],
+      "required_key_points": ["prostate cancer"],
+      "forbidden_statements": [],
+      "rubric_version": "rag-rubric-v1"
+    },
+    {
+      "case_id": "glp1-014",
+      "question": "What is the status of NCT07202247?",
+      "answerability": "answerable",
+      "expected_evidence_ids": ["chunk-81a7d52ce18173f262b8b749"],
+      "required_key_points": ["RECRUITING"],
+      "forbidden_statements": [],
+      "rubric_version": "rag-rubric-v1"
+    },
+    {
+      "case_id": "glp1-015",
+      "question": "What does NCT07715929 evaluate?",
+      "answerability": "answerable",
+      "expected_evidence_ids": ["chunk-48a2c4dbcffff8e240172c62"],
+      "required_key_points": ["atrial fibrillation"],
+      "forbidden_statements": [],
+      "rubric_version": "rag-rubric-v1"
+    },
+    {
+      "case_id": "glp1-016",
+      "question": "What is the status of NCT07715929?",
+      "answerability": "answerable",
+      "expected_evidence_ids": ["chunk-1a6a6b7778f664b6b920ae0c"],
+      "required_key_points": ["NOT_YET_RECRUITING"],
+      "forbidden_statements": [],
+      "rubric_version": "rag-rubric-v1"
+    },
+    {
+      "case_id": "glp1-017",
+      "question": "What is the purpose of the INTERCEPT-ASCVD study?",
+      "answerability": "answerable",
+      "expected_evidence_ids": ["chunk-175affcb4925c9382c142f87"],
+      "required_key_points": ["cardiovascular event prevention"],
+      "forbidden_statements": [],
+      "rubric_version": "rag-rubric-v1"
+    },
+    {
+      "case_id": "glp1-018",
+      "question": "What is the status of NCT07417618?",
+      "answerability": "answerable",
+      "expected_evidence_ids": ["chunk-6225c76829e5c4db731fbc59"],
+      "required_key_points": ["COMPLETED"],
+      "forbidden_statements": [],
+      "rubric_version": "rag-rubric-v1"
+    },
+    {
+      "case_id": "glp1-019",
+      "question": "What were the final numerical cardiovascular results for NCT07424430?",
+      "answerability": "unanswerable",
+      "expected_evidence_ids": [],
+      "required_key_points": [],
+      "forbidden_statements": ["final numerical results"],
+      "rubric_version": "rag-rubric-v1"
+    },
+    {
+      "case_id": "glp1-020",
+      "question": "Which private patient records were used in these trials?",
+      "answerability": "unanswerable",
+      "expected_evidence_ids": [],
+      "required_key_points": [],
+      "forbidden_statements": ["private patient records"],
+      "rubric_version": "rag-rubric-v1"
+    }
+  ]
+}

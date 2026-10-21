@@ -142,13 +142,33 @@ After reinstalling the editable package, the equivalent entry point is
 
 ### Evaluation scope
 
-Feature 007 remains at its specification gate:
+Feature 007 is implemented:
 
 - [Reproducible RAG evaluation](specs/007-rag-evaluation/spec.md)
 
-Feature 007 will evaluate linked feature 006 pipeline records while keeping
-retrieval and answer metrics attributable to separate stages. Evaluation is
-offline and read-only; it cannot retract an answer already returned to a user.
+Feature 007 evaluates linked feature 006 pipeline records while keeping retrieval
+and answer metrics attributable to separate stages. Evaluation is offline and
+read-only; it cannot retract an answer already returned to a user. It also renders
+a deterministic, human-readable answer view with source references and versioned
+quality checks, without presenting a misleading per-answer trust percentage.
+
+### Evaluation and presentation prototype
+
+Feature 007 now provides:
+
+- `clinical-doc-eval run` for saved or generated feature 006 pipeline records
+- `clinical-doc-eval compare` for one-variable comparisons
+- `clinical-doc-eval review` for persisted human readability reviews
+- `clinical-doc-present` for deterministic plain-text answer views
+
+The versioned pilot case set is
+[glp1-eval-v1.json](evaluation/cases/glp1-eval-v1.json). The initial live baseline
+and its observed limitations are documented in
+[evaluation-baseline.md](docs/evaluation-baseline.md).
+
+After reinstalling the editable package, the console commands are available.
+During the current checkout they can be run through
+`python -m clinical_doc_assist.evaluation.cli`.
 
 ## Spec-Driven Development
 

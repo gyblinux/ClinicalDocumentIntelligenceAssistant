@@ -47,7 +47,9 @@ feature 007 still requires its own approved plan and tasks.
 Feature 006 accepts each user question, performs fresh retrieval, invokes
 answering, and links the resulting artifacts. Feature 007 evaluates each fixed case
 from the pipeline record plus its underlying retrieval and answer artifacts,
-preserving attribution between retrieval and answer-generation failures.
+preserving attribution between retrieval and answer-generation failures. It now
+also provides a read-only presentation of claims and citations; benchmark results
+remain separate from any per-answer trust claim.
 
 ## Stage Assessment
 
