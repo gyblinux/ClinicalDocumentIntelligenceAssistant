@@ -82,11 +82,69 @@ def test_search_reports_http_and_payload_failures() -> None:
             lambda _: httpx.Response(503, json={"message": "unavailable"})
         )
     )
-    with pytest.raises(SourceError, match="503"):
-        ClinicalTrialsSource(client=http_client).search(request, query="trial")
+    with pytest.raises(SourceError, match="503") as status_error:
+        ClinicalTrialsSource(
+            client=http_client,
+            sleep=lambda _: None,
+        ).search(request, query="trial")
+    assert status_error.value.error_type == "http_status"
+    assert status_error.value.http_status == 503
+    assert status_error.value.retryable is True
 
     malformed_client = httpx.Client(
         transport=httpx.MockTransport(lambda _: httpx.Response(200, json={"studies": "not-a-list"}))
     )
     with pytest.raises(SourceError, match="studies"):
         ClinicalTrialsSource(client=malformed_client).search(request, query="trial")
+
+
+def test_fetch_study_uses_detail_endpoint() -> None:
+    captured: list[httpx.Request] = []
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        captured.append(request)
+        return httpx.Response(200, json={"protocolSection": {}})
+
+    client = httpx.Client(transport=httpx.MockTransport(handler))
+    source = ClinicalTrialsSource(client=client)
+
+    result = source.fetch_study("NCT12345678")
+
+    assert result == {"protocolSection": {}}
+    assert str(captured[0].url) == ("https://clinicaltrials.gov/api/v2/studies/NCT12345678")
+
+
+def test_fetch_study_validates_identifier_and_http_errors() -> None:
+    client = httpx.Client(
+        transport=httpx.MockTransport(lambda _: httpx.Response(404, json={"message": "not found"}))
+    )
+    source = ClinicalTrialsSource(client=client)
+
+    with pytest.raises(SourceError, match="NCT"):
+        source.fetch_study("invalid")
+    with pytest.raises(SourceError, match="404"):
+        ClinicalTrialsSource(
+            client=client,
+            sleep=lambda _: None,
+        ).fetch_study("NCT12345678")
+
+
+def test_retries_429_before_succeeding() -> None:
+    calls = 0
+    delays: list[float] = []
+
+    def handler(_: httpx.Request) -> httpx.Response:
+        nonlocal calls
+        calls += 1
+        if calls == 1:
+            return httpx.Response(429, headers={"Retry-After": "0"})
+        return httpx.Response(200, json={"protocolSection": {}})
+
+    client = httpx.Client(transport=httpx.MockTransport(handler))
+    source = ClinicalTrialsSource(client=client, sleep=delays.append)
+
+    result = source.fetch_study("NCT12345678")
+
+    assert result == {"protocolSection": {}}
+    assert calls == 2
+    assert delays == [0.0]

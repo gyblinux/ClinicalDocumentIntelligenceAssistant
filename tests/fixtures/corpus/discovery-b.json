@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0",
+  "run_id": "run-fixture-b",
+  "status": "completed",
+  "request": {
+    "topic": "semaglutide cardiovascular outcomes",
+    "updated_after": "2023-01-01",
+    "updated_before": "2026-10-21",
+    "limit": 5
+  },
+  "current_time": "2026-10-21T08:00:00Z",
+  "searches": [],
+  "accepted": [
+    {
+      "candidate": {
+        "nct_id": "NCT05214573",
+        "title": "Second-line Therapies for Type 2 Diabetes",
+        "source_url": "https://clinicaltrials.gov/study/NCT05214573",
+        "source_type": "trial_registry",
+        "updated_date": "2025-10-10"
+      },
+      "status": "accepted",
+      "reason_codes": ["relevant_topic"],
+      "duplicate_of": null
+    }
+  ],
+  "rejected": [],
+  "needs_review": [],
+  "errors": []
+}

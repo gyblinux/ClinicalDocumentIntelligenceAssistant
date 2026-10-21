@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0",
+  "run_id": "run-fixture-a",
+  "status": "completed",
+  "request": {
+    "topic": "GLP-1 cardiovascular outcomes",
+    "updated_after": "2023-01-01",
+    "updated_before": "2026-10-21",
+    "limit": 5
+  },
+  "current_time": "2026-10-21T07:30:00Z",
+  "searches": [],
+  "accepted": [
+    {
+      "candidate": {
+        "nct_id": "NCT05214573",
+        "title": "Second-line Therapies for Type 2 Diabetes",
+        "source_url": "https://clinicaltrials.gov/study/NCT05214573",
+        "source_type": "trial_registry",
+        "updated_date": "2025-10-10"
+      },
+      "status": "accepted",
+      "reason_codes": ["relevant_topic"],
+      "duplicate_of": null
+    },
+    {
+      "candidate": {
+        "nct_id": "NCT06811324",
+        "title": "GLP-1 Treatment Study",
+        "source_url": "https://clinicaltrials.gov/study/NCT06811324",
+        "source_type": "trial_registry",
+        "updated_date": "2026-01-01"
+      },
+      "status": "accepted",
+      "reason_codes": ["relevant_topic"],
+      "duplicate_of": null
+    }
+  ],
+  "rejected": [],
+  "needs_review": [],
+  "errors": []
+}

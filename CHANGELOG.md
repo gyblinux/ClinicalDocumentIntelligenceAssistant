@@ -12,11 +12,15 @@ All notable project changes are recorded here.
   context, deterministic screening, and a stop before document ingestion.
 - Add the `clinical-doc-discover` prototype with a bounded research agent,
   ClinicalTrials.gov search, deterministic screening, and JSON run output.
+- Add the `clinical-doc-corpus` prototype with detailed source retrieval,
+  normalized evidence documents, deterministic chunks, and local manifests.
 - Define persisted discovery artifacts, empty-input handling, multi-run
   deduplication for feature 003, and baseline retrieval scope for feature 004.
 
 ### Changed
 
+- Improve corpus chunk boundaries, transient source retries, structured source
+  failures, and concise filesystem error handling.
 - Persist discovery runs as schema-versioned JSON artifacts for feature 003 and
   keep console output safe for non-UTF-8 Windows terminals.
 - Refocus the baseline on a small public clinical research Q&A practice project

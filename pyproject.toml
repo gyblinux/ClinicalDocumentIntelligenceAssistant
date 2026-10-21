@@ -23,6 +23,7 @@ dev = [
 [project.scripts]
 clinical-doc-assist = "clinical_doc_assist.cli:main"
 clinical-doc-discover = "clinical_doc_assist.research.cli:main"
+clinical-doc-corpus = "clinical_doc_assist.corpus.cli:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/clinical_doc_assist"]

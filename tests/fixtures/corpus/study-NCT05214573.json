@@ -1,0 +1,71 @@
+{
+  "protocolSection": {
+    "identificationModule": {
+      "nctId": "NCT05214573",
+      "briefTitle": "Second-line Therapies for Type 2 Diabetes",
+      "officialTitle": "Second-line Therapies and Cardiovascular Risk"
+    },
+    "statusModule": {
+      "overallStatus": "COMPLETED",
+      "startDateStruct": {"date": "2021-12-01"},
+      "primaryCompletionDateStruct": {"date": "2023-09-30"},
+      "completionDateStruct": {"date": "2025-07-22"},
+      "studyFirstPostDateStruct": {"date": "2022-01-28"},
+      "lastUpdatePostDateStruct": {"date": "2025-10-10"}
+    },
+    "sponsorCollaboratorsModule": {
+      "leadSponsor": {"name": "Mayo Clinic"},
+      "collaborators": [
+        {"name": "Patient-Centered Outcomes Research Institute"}
+      ]
+    },
+    "descriptionModule": {
+      "briefSummary": "Observational study comparing second-line diabetes therapies.",
+      "detailedDescription": "The study compares cardiovascular outcomes across drug classes."
+    },
+    "conditionsModule": {
+      "conditions": ["Type 2 Diabetes", "Cardiovascular Disease"]
+    },
+    "designModule": {
+      "studyType": "OBSERVATIONAL",
+      "enrollmentInfo": {"count": 386301, "type": "ACTUAL"}
+    },
+    "armsInterventionsModule": {
+      "interventions": [
+        {
+          "type": "DRUG",
+          "name": "GLP-1 receptor agonist",
+          "description": "Patients who filled a GLP-1RA medication."
+        },
+        {
+          "type": "DRUG",
+          "name": "SGLT2 inhibitor",
+          "description": "Patients who filled an SGLT2 inhibitor."
+        }
+      ]
+    },
+    "outcomesModule": {
+      "primaryOutcomes": [
+        {
+          "measure": "Major adverse cardiovascular events",
+          "description": "Non-fatal MI, non-fatal stroke, or mortality.",
+          "timeFrame": "Up to 8 years"
+        }
+      ],
+      "secondaryOutcomes": [
+        {
+          "measure": "Heart failure hospitalization",
+          "description": "Hospitalization for heart failure.",
+          "timeFrame": "Up to 8 years"
+        }
+      ]
+    },
+    "eligibilityModule": {
+      "eligibilityCriteria": "Adults with type 2 diabetes using a study medication.",
+      "healthyVolunteers": false,
+      "sex": "ALL",
+      "minimumAge": "21 Years",
+      "studyPopulation": "Adults receiving care in administrative claims data."
+    }
+  }
+}

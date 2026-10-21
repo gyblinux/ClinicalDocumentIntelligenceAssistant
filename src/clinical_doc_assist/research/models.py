@@ -42,6 +42,19 @@ class ClockUnavailableError(DiscoveryError):
 class SourceError(DiscoveryError):
     """Raised when the approved source cannot return usable data."""
 
+    def __init__(
+        self,
+        message: str,
+        *,
+        error_type: str = "source_error",
+        http_status: int | None = None,
+        retryable: bool = False,
+    ) -> None:
+        super().__init__(message)
+        self.error_type = error_type
+        self.http_status = http_status
+        self.retryable = retryable
+
 
 class AgentError(DiscoveryError):
     """Raised when the research agent cannot complete a bounded run."""

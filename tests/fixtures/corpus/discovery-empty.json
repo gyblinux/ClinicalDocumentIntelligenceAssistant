@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "run_id": "run-fixture-empty",
+  "status": "no_results",
+  "request": {
+    "topic": "no matching studies",
+    "updated_after": "2023-01-01",
+    "updated_before": "2026-10-21",
+    "limit": 5
+  },
+  "current_time": "2026-10-21T08:30:00Z",
+  "searches": [],
+  "accepted": [],
+  "rejected": [],
+  "needs_review": [],
+  "errors": []
+}

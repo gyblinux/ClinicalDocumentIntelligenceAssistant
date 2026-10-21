@@ -50,6 +50,24 @@ python -m clinical_doc_assist.research.cli "GLP-1 cardiovascular outcomes" `
   --output artifacts/discovery/glp1-cardio.json
 ```
 
+### Corpus prototype
+
+Build normalized evidence documents and chunks from one or more discovery
+artifacts:
+
+```powershell
+python -m clinical_doc_assist.corpus.cli build `
+  --discovery-run artifacts/discovery/semaglutide-obesity.json `
+  --discovery-run artifacts/discovery/tirzepatide-obesity.json `
+  --discovery-run artifacts/discovery/glp1-mace.json `
+  --output artifacts/corpus/glp1-pilot
+```
+
+The output directory contains `manifest.json`, `documents.jsonl`, and
+`chunks.jsonl`. A `partial` status means some detailed ClinicalTrials.gov records
+failed; successful documents and failures remain inspectable in the manifest.
+The stage performs no LLM calls and stops before embeddings or retrieval.
+
 ## Spec-Driven Development
 
 The project advances through explicit, reviewable gates:
