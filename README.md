@@ -121,17 +121,34 @@ Manual acceptance passed with the retrieval containers stopped.
 After reinstalling the editable package, the equivalent entry point is
 `clinical-doc-answer`.
 
-### Next scope
+### Orchestration prototype
 
-The next features remain at their specification gates:
+Run one complete question-to-answer workflow:
 
-- [Question-to-answer orchestration](specs/006-question-answer-orchestration/spec.md)
+```powershell
+./.venv/Scripts/python.exe -m clinical_doc_assist.orchestration.cli `
+  "What did NCT07424430 aim to evaluate?" `
+  --collection clinical_evidence_v1 `
+  --limit 5
+```
+
+Docker-backed TEI and Qdrant must be running. The command performs fresh
+retrieval for the submitted question, invokes the answering stage, and writes
+linked records under `artifacts/retrieval/`, `artifacts/answers/`, and
+`artifacts/pipelines/`.
+
+After reinstalling the editable package, the equivalent entry point is
+`clinical-doc-ask`.
+
+### Evaluation scope
+
+Feature 007 remains at its specification gate:
+
 - [Reproducible RAG evaluation](specs/007-rag-evaluation/spec.md)
 
-Feature 006 will accept a user question, run fresh feature 004 retrieval, invoke
-feature 005 answering, and persist a pipeline record linking both stage artifacts.
-Feature 007 will evaluate those linked records while keeping retrieval and answer
-metrics attributable to separate stages.
+Feature 007 will evaluate linked feature 006 pipeline records while keeping
+retrieval and answer metrics attributable to separate stages. Evaluation is
+offline and read-only; it cannot retract an answer already returned to a user.
 
 ## Spec-Driven Development
 

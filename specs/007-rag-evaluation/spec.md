@@ -75,6 +75,16 @@ declared setting, then verify the report identifies that setting.
 2. **Given** more than one changed variable, **When** comparison is requested,
    **Then** the run is rejected as uncontrolled.
 
+## Scope Boundaries
+
+- Evaluation is offline and read-only with respect to feature 006 pipeline and
+  answer records.
+- It cannot withdraw, rewrite, or repair an answer already returned to a user.
+- Runtime grounding, citation validation, abstention, and failure behavior remain
+  owned by features 004 through 006.
+- A web API, continuous monitoring, and automatic prompt rewriting remain outside
+  this feature.
+
 ### Edge Cases
 
 - Fewer than 20 or more than 40 evaluation cases.
@@ -110,6 +120,10 @@ declared setting, then verify the report identifies that setting.
 - **FR-012**: Invalid cases or uncontrolled comparisons MUST fail clearly.
 - **FR-013**: The report MUST identify the pipeline record, retrieval artifact, and
   answer record used for every case.
+- **FR-014**: Evaluation MUST preserve the original pipeline and answer artifacts
+  and write results separately.
+- **FR-015**: Every failed case MUST record versioned failure codes and an
+  actionable intervention category or a clear "no change recommended" outcome.
 
 ### Key Entities
 
@@ -125,6 +139,8 @@ declared setting, then verify the report identifies that setting.
   errors.
 - **Comparison Run**: Baseline and candidate configurations with one changed
   variable.
+- **Failure Diagnosis**: Versioned failure codes, affected stage, and suggested
+  intervention category for a failed case.
 
 ## Success Criteria *(mandatory)*
 
@@ -140,6 +156,9 @@ declared setting, then verify the report identifies that setting.
   reports.
 - **SC-007**: Every evaluated case identifies exactly one feature 006 pipeline
   record and its matching retrieval and answer artifacts.
+- **SC-008**: Evaluation never modifies or withdraws the original answer.
+- **SC-009**: Every failed case has a reproducible diagnosis and recommended
+  intervention category.
 
 ## Assumptions
 
@@ -148,6 +167,8 @@ declared setting, then verify the report identifies that setting.
   underlying retrieval and answer artifacts.
 - The feature 005 answer record is the answer-side evaluation input; the paired
   feature 004 artifact remains necessary for retrieval scoring and diagnostics.
+- Evaluation is an offline quality-measurement stage; it does not protect the
+  already-returned answer from defects discovered afterward.
 - The initial test set remains in the 20-40 case range.
 - Deterministic checks and a small human-reviewed rubric are used before adding an
   LLM judge.

@@ -21,6 +21,9 @@ All notable project changes are recorded here.
   claim-level citation validation, allowlisted trial metadata, safe abstention,
   persisted answer records for later orchestration/evaluation, and a passing live
   Docker-off acceptance.
+- Add the `clinical-doc-ask` orchestration command for fresh question-specific
+  retrieval, feature 005 answering, linked stage artifacts, and inspectable
+  pipeline records.
 - Define a refined single-turn evidence-answering scope, approved plan, and task
   list; preserve the preliminary evaluation scope; and record an ignored
   requirements-gap baseline for final comparison. Define the paired

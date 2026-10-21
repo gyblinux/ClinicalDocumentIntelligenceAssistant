@@ -4,7 +4,7 @@
 
 **Created**: 2026-10-21
 
-**Status**: Draft - awaiting review
+**Status**: Implemented and validated 2026-10-21
 
 **Input**: Provide a one-question user interface that accepts any question
 answerable from the current public clinical corpus, retrieves fresh evidence for
@@ -95,6 +95,9 @@ failure, and answer failure; verify each outcome is distinct and inspectable.
   feature.
 - Public documents only; private patient records and clinical decision-making are
   prohibited.
+- Runtime validation is limited to input, retrieval, citation, and artifact
+  consistency checks. Semantic faithfulness scoring and retroactive answer
+  withdrawal are outside this feature.
 - Evaluation scoring, a web API, production monitoring, and multi-agent
   orchestration remain outside this feature.
 
@@ -128,7 +131,8 @@ failure, and answer failure; verify each outcome is distinct and inspectable.
 - **FR-006**: The interface MUST preserve both the feature 004 retrieval artifact
   and the feature 005 answer record.
 - **FR-007**: The interface MUST persist one pipeline record linking the question,
-  retrieval ID and artifact, answer ID and artifact, stage statuses, timing, and
+  retrieval ID and artifact, answer ID and artifact, collection, retrieval limit,
+  embedding model, answer model, prompt version, stage statuses, timing, and
   errors.
 - **FR-008**: When retrieval produces no results, the interface MUST return the
   feature 005 insufficient-evidence outcome without invoking the answer model.
@@ -141,6 +145,8 @@ failure, and answer failure; verify each outcome is distinct and inspectable.
 - **FR-012**: The interface MUST NOT carry conversation history or reuse evidence
   from a previous question unless a later feature explicitly adds that behavior.
 - **FR-013**: The interface MUST stop before evaluation scoring.
+- **FR-014**: The interface MUST NOT claim that later evaluation can withdraw or
+  repair an answer already returned; semantic quality assessment is offline.
 
 ### Key Entities
 
@@ -170,6 +176,8 @@ failure, and answer failure; verify each outcome is distinct and inspectable.
   from the pipeline record.
 - **SC-008**: A feature 007 evaluation can consume one linked pipeline record per
   fixed evaluation case without manually coordinating the two lower-level stages.
+- **SC-009**: A returned answer is never presented as semantically verified merely
+  because it passed runtime citation validation.
 
 ## Assumptions
 
@@ -186,3 +194,5 @@ failure, and answer failure; verify each outcome is distinct and inspectable.
   recorded for reproducibility.
 - Feature 007 consumes the linked pipeline record for evaluation while retaining
   access to the underlying retrieval and answer artifacts.
+- Feature 007 runs offline and cannot change the answer that feature 006 already
+  returned.

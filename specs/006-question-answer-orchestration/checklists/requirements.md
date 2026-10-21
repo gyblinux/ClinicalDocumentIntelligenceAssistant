@@ -17,7 +17,9 @@
 - [x] No unresolved clarification markers remain
 - [x] Fresh retrieval for every question is explicit
 - [x] Pipeline artifact linkage is defined
+- [x] Pipeline configuration snapshot supports reproducibility
 - [x] No-results, retrieval failure, and answer failure behavior are distinct
+- [x] Runtime validation and offline semantic evaluation are separated
 - [x] Success criteria are measurable and technology-neutral
 - [x] Acceptance scenarios cover supported, insufficient, and failed outcomes
 - [x] Scope boundaries, dependencies, and assumptions are identified
@@ -28,6 +30,7 @@
 - [x] User stories cover question execution and artifact inspection
 - [x] The feature preserves feature 005 citation and abstention guarantees
 - [x] Evaluation scoring remains out of scope
+- [x] No retroactive answer withdrawal is implied
 - [x] No tasks or implementation code have been created
 - [x] Specification is ready for plan review
 

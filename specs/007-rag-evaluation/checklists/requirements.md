@@ -19,6 +19,8 @@
 - [x] Test-set size, fields, and versioning are defined
 - [x] Retrieval, citation, faithfulness, refusal, latency, and cost metrics are
   covered
+- [x] Evaluation is explicitly offline and read-only
+- [x] Failed cases produce versioned diagnostic feedback
 - [x] Baseline and one-variable comparison are explicit
 - [x] Edge cases and invalid-run behavior are testable
 - [x] Success criteria are measurable
@@ -30,6 +32,7 @@
 - [x] All functional requirements have clear acceptance coverage
 - [x] User stories cover baseline and comparison flows
 - [x] The feature meets the measurable outcomes in the success criteria
+- [x] Evaluation never modifies or withdraws original answers
 - [x] Evaluation implementation depends on features 004, 005, and 006
 - [x] No tasks or implementation code have been created
 - [x] Specification is ready for plan review

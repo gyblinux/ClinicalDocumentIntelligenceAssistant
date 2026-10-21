@@ -39,10 +39,10 @@ Feature 003 converts accepted records into normalized evidence documents and
 deterministic chunks. Feature 004 indexes those chunks and returns ranked evidence
 with source provenance.
 
-Feature 005 now provides the implemented single-turn answering stage. Feature 006
-adds the planned question-to-answer composition layer, and feature 007 evaluates
-the resulting pipeline records. None adds multi-agent behavior; features 006 and
-007 still require separate approved plans and tasks.
+Feature 005 provides the implemented single-turn answering stage. Feature 006 now
+provides the implemented question-to-answer composition layer, and feature 007
+will evaluate the resulting pipeline records. None adds multi-agent behavior;
+feature 007 still requires its own approved plan and tasks.
 
 Feature 006 accepts each user question, performs fresh retrieval, invokes
 answering, and links the resulting artifacts. Feature 007 evaluates each fixed case

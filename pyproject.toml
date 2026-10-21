@@ -27,6 +27,7 @@ clinical-doc-discover = "clinical_doc_assist.research.cli:main"
 clinical-doc-corpus = "clinical_doc_assist.corpus.cli:main"
 clinical-doc-retrieve = "clinical_doc_assist.retrieval.cli:main"
 clinical-doc-answer = "clinical_doc_assist.answering.cli:main"
+clinical-doc-ask = "clinical_doc_assist.orchestration.cli:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/clinical_doc_assist"]
