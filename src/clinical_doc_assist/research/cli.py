@@ -4,9 +4,12 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
+import tempfile
 from collections.abc import Callable, Sequence
 from datetime import date
+from pathlib import Path
 
 from openai import OpenAI
 
@@ -43,6 +46,11 @@ def build_parser() -> argparse.ArgumentParser:
         type=int,
         default=5,
         help="Maximum candidates, from 1 to 20.",
+    )
+    parser.add_argument(
+        "--output",
+        type=Path,
+        help="Write a versioned JSON discovery artifact to this path.",
     )
     return parser
 
@@ -91,7 +99,21 @@ def main(
         if source is not None:
             source.close()
 
-    print(json.dumps(run.to_dict(), indent=2, ensure_ascii=False))
+    if run.status == "failed":
+        detail = "; ".join(run.errors) if run.errors else "discovery run failed"
+        print(f"Discovery error: {detail}", file=sys.stderr)
+        return 1
+
+    payload = run.to_dict()
+    if args.output is not None:
+        output = json.dumps(payload, indent=2, ensure_ascii=False) + "\n"
+        try:
+            _write_json_artifact(args.output, output)
+        except OSError as exc:
+            print(f"Output error: {exc}", file=sys.stderr)
+            return 1
+
+    print(json.dumps(payload, indent=2, ensure_ascii=True))
     return 0
 
 
@@ -100,6 +122,23 @@ def _date_argument(value: str) -> date:
         return date.fromisoformat(value)
     except ValueError as exc:
         raise argparse.ArgumentTypeError(f"invalid date '{value}'; expected YYYY-MM-DD") from exc
+
+
+def _write_json_artifact(path: Path, content: str) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    file_descriptor, temporary_name = tempfile.mkstemp(
+        prefix=f".{path.name}.",
+        suffix=".tmp",
+        dir=path.parent,
+    )
+    os.close(file_descriptor)
+    temporary_path = Path(temporary_name)
+
+    try:
+        temporary_path.write_text(content, encoding="utf-8", newline="\n")
+        os.replace(temporary_path, path)
+    finally:
+        temporary_path.unlink(missing_ok=True)
 
 
 if __name__ == "__main__":

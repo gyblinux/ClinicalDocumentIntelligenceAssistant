@@ -86,6 +86,8 @@ def test_run_serializes_candidate_and_screening_decisions() -> None:
 
     payload = run.to_dict()
 
+    assert payload["schema_version"] == "1.0"
+    assert payload["run_id"].startswith("run-")
     assert payload["status"] == "completed"
     assert payload["request"]["topic"] == "trial"
     assert payload["accepted"][0]["candidate"]["nct_id"] == "NCT12345678"

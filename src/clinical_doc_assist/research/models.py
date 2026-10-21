@@ -2,15 +2,17 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import date
 from typing import Any, Literal, TypeAlias
+from uuid import uuid4
 
 MAX_TOPIC_LENGTH = 500
 MAX_CANDIDATES = 20
 
 ScreeningStatus: TypeAlias = Literal["accepted", "rejected", "needs_review"]
 RunStatus: TypeAlias = Literal["completed", "no_results", "failed"]
+SchemaVersion: TypeAlias = Literal["1.0"]
 ReasonCode: TypeAlias = Literal[
     "approved_source",
     "within_date_window",
@@ -25,6 +27,7 @@ ReasonCode: TypeAlias = Literal[
     "missing_reflection",
 ]
 
+SCHEMA_VERSION: SchemaVersion = "1.0"
 VALID_SCREENING_STATUSES = frozenset({"accepted", "rejected", "needs_review"})
 
 
@@ -175,9 +178,13 @@ class DiscoveryRun:
     rejected: tuple[ScreeningDecision, ...]
     needs_review: tuple[ScreeningDecision, ...]
     errors: tuple[str, ...] = ()
+    schema_version: SchemaVersion = SCHEMA_VERSION
+    run_id: str = field(default_factory=lambda: f"run-{uuid4().hex[:16]}")
 
     def to_dict(self) -> dict[str, Any]:
         return {
+            "schema_version": self.schema_version,
+            "run_id": self.run_id,
             "status": self.status,
             "request": self.request.to_dict(),
             "current_time": self.current_time,

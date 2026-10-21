@@ -32,6 +32,11 @@ source dates.
    runs, **Then** candidates are returned in a structured list.
 2. **Given** no matching records, **When** discovery runs, **Then** the user sees
    an explicit no-results result rather than an empty success.
+3. **Given** a valid discovery run and an output path, **When** discovery
+   succeeds, **Then** a schema-versioned JSON artifact is written to that path
+   for later stages.
+4. **Given** discovery fails, **When** an output path is configured, **Then** no
+   incomplete artifact is presented as a successful run.
 
 ---
 
@@ -117,6 +122,12 @@ verify that each is classified correctly with a reason.
   document.
 - **FR-011**: Source failures and incomplete runs MUST be reported as failures,
   not as successful empty results.
+- **FR-012**: Every discovery run MUST include a schema version and unique run
+  identifier.
+- **FR-013**: Users MUST be able to write a successful `completed` or
+  `no_results` run to a chosen JSON output path.
+- **FR-014**: A failed run MUST NOT leave an incomplete output file that can be
+  mistaken for a successful discovery artifact.
 
 ### Key Entities
 
@@ -126,6 +137,8 @@ verify that each is classified correctly with a reason.
   codes and supporting metadata.
 - **Discovery Run**: The request, recorded current time, search summary, candidate
   decisions, and failures.
+- **Discovery Artifact**: A schema-versioned JSON file containing one complete
+  discovery run for feature 003.
 
 ## Success Criteria *(mandatory)*
 
@@ -141,6 +154,10 @@ verify that each is classified correctly with a reason.
   receives an identifiable reason code.
 - **SC-005**: A user can inspect the complete discovery run and stop before
   ingestion.
+- **SC-006**: Every persisted discovery artifact contains a schema version and
+  unique run identifier.
+- **SC-007**: A failed run leaves no output file that is accepted as a successful
+  discovery artifact.
 
 ## Assumptions
 
@@ -154,3 +171,5 @@ verify that each is classified correctly with a reason.
   model steps; multi-agent orchestration is out of scope.
 - General web search, PubMed, Europe PMC, query rewriting, and automatic retries
   are deferred.
+- The default behavior may continue printing JSON to standard output; `--output`
+  is the explicit handoff mechanism for the next stage.

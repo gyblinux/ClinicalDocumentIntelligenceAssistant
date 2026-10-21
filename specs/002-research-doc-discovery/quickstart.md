@@ -25,7 +25,8 @@ does not make network requests or need an API key.
 clinical-doc-discover "GLP-1 cardiovascular outcomes" `
   --updated-after 2023-01-01 `
   --updated-before 2026-10-21 `
-  --limit 5
+  --limit 20 `
+  --output artifacts/discovery/glp1-cardio.json
 ```
 
 If Windows application-control policy blocks the generated executable, use the
@@ -35,7 +36,8 @@ equivalent module command:
 python -m clinical_doc_assist.research.cli "GLP-1 cardiovascular outcomes" `
   --updated-after 2023-01-01 `
   --updated-before 2026-10-21 `
-  --limit 5
+  --limit 20 `
+  --output artifacts/discovery/glp1-cardio.json
 ```
 
 Expected outcomes:
@@ -44,6 +46,8 @@ Expected outcomes:
   and `needs_review`.
 - `status: "no_results"` when the approved source returns no matches.
 - A non-zero exit and clear error when the clock or source fails.
+- A schema-versioned JSON artifact at the requested `--output` path.
 
-The command stops after printing the JSON discovery run. It does not download,
-parse, or ingest study documents.
+The command stops after printing and optionally persisting the JSON discovery run.
+It does not download, parse, or ingest study documents. Artifacts under
+`artifacts/` are intentionally ignored by Git.

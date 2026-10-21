@@ -57,6 +57,8 @@ Represents the complete stage output.
 
 | Field | Type | Rule |
 | --- | --- | --- |
+| `schema_version` | string | Fixed discovery artifact version, initially `1.0` |
+| `run_id` | string | Unique identifier for this discovery run |
 | `status` | enum | `completed`, `no_results`, or `failed` |
 | `request` | DiscoveryRequest | Original validated request |
 | `current_time` | ISO 8601 string or null | Recorded before search |

@@ -149,6 +149,8 @@ def test_agent_records_time_searches_and_returns_screening() -> None:
 
     run = _agent(client, source).run(_request())
 
+    assert run.run_id.startswith("run-")
+    assert run.schema_version == "1.0"
     assert run.status == "completed"
     assert run.current_time == "2026-10-21T07:30:00Z"
     assert run.accepted[0].candidate.nct_id == "NCT12345678"

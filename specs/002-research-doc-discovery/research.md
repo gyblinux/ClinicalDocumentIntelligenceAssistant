@@ -74,10 +74,12 @@ inspectable tool use.
 
 ## Output and Reproducibility
 
-**Decision**: Emit one JSON object to standard output.
+**Decision**: Emit one JSON object to standard output and optionally persist the
+same schema-versioned object through `--output`.
 
-**Rationale**: It is directly inspectable, redirectable to a file, and easy to
-compare across runs without adding a database or UI.
+**Rationale**: Standard output remains directly inspectable, while the explicit
+file artifact provides a stable handoff to feature 003 without adding a database
+or UI.
 
 **Alternatives considered**: A database, dashboard, or artifact service was
 rejected as unnecessary for a one-user practice project.

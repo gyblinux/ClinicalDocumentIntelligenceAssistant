@@ -106,6 +106,11 @@ deterministic precedence, and the CLI JSON contract.
 - [X] T020 Review the implementation against `spec.md` and `plan.md`, remove unnecessary abstractions, and confirm no ingestion, retrieval, answering, multi-agent, database, or monitoring scope was added
 - [X] T021 Apply readability refactors in `src/clinical_doc_assist/research/models.py`, `src/clinical_doc_assist/research/agent.py`, and `src/clinical_doc_assist/research/cli.py`: fix the JSON return annotation, add a typed `ToolResult`, narrow provider errors, remove the redundant exception hierarchy, and introduce status and reason-code aliases
 - [X] T022 Verify readability refactors with `pytest`, Ruff lint, Ruff formatting, and editor diagnostics across the research package and its tests
+- [X] T023 Add `schema_version` and `run_id` to `DiscoveryRun` serialization in `src/clinical_doc_assist/research/models.py`
+- [X] T024 Add atomic `--output PATH` persistence to `src/clinical_doc_assist/research/cli.py`, writing only valid non-failed runs
+- [X] T025 Add tests for artifact schema, run identity, successful output persistence, failed-run output suppression, and Unicode-safe stdout in `tests/test_research_models.py`, `tests/test_research_agent.py`, and `tests/test_research_cli.py`
+- [X] T026 Update feature documentation and `.env.example` for persisted artifacts and `deepseek-flash`
+- [X] T027 Run three focused live discovery requests and persist schema-versioned artifacts under `artifacts/discovery/`
 
 ---
 

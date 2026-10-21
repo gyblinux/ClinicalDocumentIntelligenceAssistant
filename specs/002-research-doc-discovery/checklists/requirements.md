@@ -17,6 +17,8 @@
 - [x] Source, date, metadata, and duplicate checks are testable
 - [x] Accepted, rejected, and needs-review outcomes are defined
 - [x] Runs are inspectable and reproducible through recorded context
+- [x] Persisted artifacts have schema and run identifiers for stage chaining
+- [x] Failed runs cannot create misleading successful artifacts
 - [x] Edge cases and success criteria are covered
 - [x] No unresolved clarification markers remain
 

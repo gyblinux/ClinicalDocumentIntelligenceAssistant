@@ -32,7 +32,8 @@ Set `DEEPSEEK_API_KEY`, then run:
 clinical-doc-discover "GLP-1 cardiovascular outcomes" `
   --updated-after 2023-01-01 `
   --updated-before 2026-10-21 `
-  --limit 5
+  --limit 20 `
+  --output artifacts/discovery/glp1-cardio.json
 ```
 
 The command prints one JSON discovery run. It uses ClinicalTrials.gov as its only
@@ -45,7 +46,8 @@ If Windows application-control policy blocks the generated executable, use:
 python -m clinical_doc_assist.research.cli "GLP-1 cardiovascular outcomes" `
   --updated-after 2023-01-01 `
   --updated-before 2026-10-21 `
-  --limit 5
+  --limit 20 `
+  --output artifacts/discovery/glp1-cardio.json
 ```
 
 ## Spec-Driven Development

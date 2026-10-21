@@ -6,6 +6,10 @@
 
 **First feature**: [Research Document Discovery and Screening](../002-research-doc-discovery/spec.md)
 
+**Next feature**: [Evidence Corpus Assembly and Chunking](../003-evidence-corpus-chunking/spec.md)
+
+**Follow-on feature**: [Evidence Embedding and Vector Retrieval](../004-evidence-vector-retrieval/spec.md)
+
 ## Verdict
 
 The proposed pipeline is directionally sound for this practice project:
@@ -25,6 +29,11 @@ candidates from ClinicalTrials.gov, uses the current-time capability, and return
 screened records. PDF parsing, retrieval, question answering, and evaluation are
 later stages.
 
+Feature 003 now defines the next bounded slice: convert accepted records into
+normalized evidence documents and deterministic chunks. Feature 004 is intentionally
+limited to indexing and retrieval basics until feature 003 is reviewed and
+implemented.
+
 ## Stage Assessment
 
 | Stage | Keep in the baseline | Defer until evidence justifies it |
@@ -36,8 +45,8 @@ later stages.
 
 ## Essential Controls
 
-1. **Stage entry points**: Ingestion, retrieval/answering, and evaluation must run
-   separately. A user can inspect a stage output and stop before the next stage.
+1. **Stage entry points**: Fine-grained stages must exchange versioned local
+   artifacts. A user can inspect an artifact and stop before the next stage.
 2. **Run manifest**: Record corpus version, chunking settings, embedding model,
    prompt version, answer model, test-set version, and timestamp.
 3. **Inspectable artifacts**: Preserve the document list, extracted metadata,

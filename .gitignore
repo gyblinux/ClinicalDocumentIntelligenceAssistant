@@ -16,10 +16,10 @@ htmlcov/
 .venv/
 build/
 dist/
+artifacts/
 
 # Editors and operating systems
 .idea/
 .vscode/
 .DS_Store
 Thumbs.db
-
