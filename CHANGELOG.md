@@ -8,6 +8,10 @@ All notable project changes are recorded here.
 
 - Initialize GitHub Spec Kit for Codex with a project constitution, baseline
   practice-project specification, and quality checklist.
+- Define the first feature as single-source research discovery with current-time
+  context, deterministic screening, and a stop before document ingestion.
+- Add the `clinical-doc-discover` prototype with a bounded research agent,
+  ClinicalTrials.gov search, deterministic screening, and JSON run output.
 
 ### Changed
 
@@ -16,6 +20,8 @@ All notable project changes are recorded here.
   implementation remain pending.
 - Document a minimal single-agent architecture review and defer multi-agent and
   infrastructure overhead until baseline results justify it.
+- Clarify the research agent's typing and error boundaries for more readable,
+  maintainable tool-call orchestration.
 
 ## [0.1.0] - 2026-10-21
 

@@ -4,6 +4,8 @@
 
 **Specification**: [spec.md](spec.md)
 
+**First feature**: [Research Document Discovery and Screening](../002-research-doc-discovery/spec.md)
+
 ## Verdict
 
 The proposed pipeline is directionally sound for this practice project:
@@ -17,6 +19,11 @@ The smallest suitable baseline is one coordinated pipeline with one
 question-answering agent. Multi-agent collaboration is not justified yet. It adds
 coordination cost, latency, token use, non-determinism, and harder failure
 attribution before the project has measured a concrete need.
+
+The first feature slice is narrower than full ingestion: one agent discovers
+candidates from ClinicalTrials.gov, uses the current-time capability, and returns
+screened records. PDF parsing, retrieval, question answering, and evaluation are
+later stages.
 
 ## Stage Assessment
 

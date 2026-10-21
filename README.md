@@ -20,6 +20,34 @@ A high-level single-agent pipeline has been proposed and reviewed in the
 Multi-agent orchestration and operational infrastructure are deferred. This is
 not yet an approved plan.
 
+The first feature is
+[research document discovery and screening](specs/002-research-doc-discovery/spec.md).
+It stops after returning accepted, rejected, and needs-review candidates.
+
+### Discovery prototype
+
+Set `DEEPSEEK_API_KEY`, then run:
+
+```powershell
+clinical-doc-discover "GLP-1 cardiovascular outcomes" `
+  --updated-after 2023-01-01 `
+  --updated-before 2026-10-21 `
+  --limit 5
+```
+
+The command prints one JSON discovery run. It uses ClinicalTrials.gov as its only
+source, records UTC time before searching, and stops before downloading or
+ingesting documents. The automated tests use fake model and HTTP responses.
+
+If Windows application-control policy blocks the generated executable, use:
+
+```powershell
+python -m clinical_doc_assist.research.cli "GLP-1 cardiovascular outcomes" `
+  --updated-after 2023-01-01 `
+  --updated-before 2026-10-21 `
+  --limit 5
+```
+
 ## Spec-Driven Development
 
 The project advances through explicit, reviewable gates:
